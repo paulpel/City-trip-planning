@@ -1,0 +1,70 @@
+{
+    "rome": [
+        {
+            "name": "Koloseum",
+            "category": ["Miejsca historyczne", "Architektura", "Muzea"],
+            "popularity": 314191,
+            "rating":  4.7,
+            "price": 18,
+            "timespend": 60,
+            "openinghours": ["9:00", "19:00"],
+            "cords": {
+                "latitude": 41.89129789399952,
+                "longitude": 12.491662737249763
+            }
+        },
+        {
+            "name": "Ogrody Borghese",
+            "category": ["Parki i ogrody", "Rekreacja"],
+            "popularity": 66616,
+            "rating":  4.6,
+            "price": 0,
+            "timespend": 60,
+            "openinghours": ["all day"],
+            "cords": {
+                "latitude": 41.91308288654223, 
+                "longitude": 12.485229955427062
+            }
+        },
+        {
+            "name": "Pantheon",
+            "category": ["Miejsca historyczne", "Kościoły i katedry"],
+            "popularity": 179580,
+            "rating":  4.8,
+            "price": 0,
+            "timespend": 30,
+            "openinghours": ["9:00", "18:45"],
+            "cords": {
+                "latitude": 41.89926923636829, 
+                "longitude": 12.476559413569142
+            }
+        },
+        {
+            "name": "Fontanna di Trevi",
+            "category": ["Miejsca historyczne", "Architektura"],
+            "popularity": 327960,
+            "rating":  4.8,
+            "price": 0,
+            "timespend": 15,
+            "openinghours": ["all day"],
+            "cords": {
+                "latitude": 41.90112190826372, 
+                "longitude": 12.483282165304814
+            }
+        },
+        {
+            "name": "Bazylika Świętego Piotra",
+            "category": ["Miejsca historyczne", "Architektura", "Kościoły i katedry"],
+            "popularity": 131091,
+            "rating":  4.8,
+            "price": 0,
+            "timespend": 15,
+            "openinghours": ["7:00", "19:00"],
+            "cords": {
+                "latitude": 41.90237429734432, 
+                "longitude": 12.453877689418539
+            }
+        },
+        
+    ]
+}
