@@ -72,7 +72,8 @@
     "Bazylika Swietego Piotra": {
       "category": [
         "Architektura",
-        "Koscioly i katedry"
+        "Koscioly i katedry",
+        "Punkt widokowy"
       ],
       "popularity": 131091,
       "rating": 4.8,
@@ -193,7 +194,8 @@
     },
     "Plac Wenecki w Rzymie": {
       "category": [
-        "Architektura"
+        "Architektura",
+        "Punkt widokowy"
       ],
       "popularity": 45727,
       "rating": 4.6,
@@ -228,7 +230,8 @@
       "category": [
         "Architektura",
         "Parki i ogrody",
-        "Rekreacja"
+        "Rekreacja",
+        "Punkt widokowy"
       ],
       "popularity": 112340,
       "rating": 4.7,
@@ -346,6 +349,140 @@
         "latitude": 41.90201150259479,
         "longitude": 12.466440230127347
       }
+    },
+    "Janikulum": {
+      "category": [
+        "Architektura",
+        "Rekreacja",
+        "Punkt widokowy"
+      ],
+      "popularity": 18238,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 60,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89164242558915, 
+        "longitude": 12.46142636232019
+      }
+    },
+    "Terazza di Campidoglio": {
+      "category": [
+        "Architektura",
+        "Rekreacja",
+        "Punkt widokowy"
+      ],
+      "popularity": 15567,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "9:30",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.89297060092349, 
+        "longitude": 12.481888533484721
+      }
+    },
+    "MAXXI - National Museum of 21st Century Art": {
+      "category": [
+        "Muzea"
+      ],
+      "popularity": 8880,
+      "rating": 4.4,
+      "price": 12,
+      "timespend": 90,
+      "openinghours": [
+        "11:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.92846059446069, 
+        "longitude": 12.466834240490371
+      }
+    },
+    "Kapitol": {
+      "category": [
+        "Architektura",
+        "Punkt widokowy"
+      ],
+      "popularity": 19111,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89359877147389, 
+        "longitude": 12.482651594462304
+      }
+    },
+    "Luk Konstantyna Wielkiego": {
+
+    },
+    "Villa D'Este": {
+
+    },
+    "Fontanna Czterech Rzek": {
+      
+    },
+    "Piazza Di Spagna": {
+      
+    },
+    "Usta Prawdy": {
+      
+    },
+    "Hale Trajana": {
+      
+    },
+    "Bazylika Swietej Marii na Zatybrzu": {
+      
+    },
+    "Giardino degli Aranci": {
+      
+    },
+    "Bazylika Swietego Klemensa": {
+      
+    },
+    "Domus Aurea": {
+      
+    },
+    "Kolumna trajana": {
+      
+    },
+    "Bazylika Swietego Pawla za Murami": {
+      
+    },
+    "Willa Hadriana": {
+      
+    },
+    "Galeria Dorii Pamphij": {
+      
+    },
+    "Lorgo di Torre Argentna": {
+      
+    },
+    "Piramida Cestiusza": {
+      
+    },
+    "Luk Tytusa": {
+      
+    },
+    "Teatr Marcellusa": {
+      
+    },
+    "Galleria Nazionale d'Arte Antica": {
+      
+    },
+    "Bazylika Matki Bozej Wiekszej": {
+      
+    },
+    "Palac Farnesse": {
+      
     }
   }
 }
