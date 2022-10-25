@@ -1326,5 +1326,503 @@
             "distance": 3122.3,
             "duration": 2248.0
         }
+    },
+    "Piazza Navona": {
+        "Koloseum": {
+            "distance": 2051.9,
+            "duration": 1477.4
+        },
+        "Ogrody Borghese": {
+            "distance": 2482.4,
+            "duration": 1787.3
+        },
+        "Pantheon": {
+            "distance": 321.6,
+            "duration": 231.6
+        },
+        "Fontanna di Trevi": {
+            "distance": 1018.3,
+            "duration": 733.2
+        },
+        "Bazylika Swietego Piotra": {
+            "distance": 1990.2,
+            "duration": 1432.9
+        },
+        "Muzea Watykanskie": {
+            "distance": 2310.1,
+            "duration": 1663.3
+        },
+        "Schody hiszpanskie": {
+            "distance": 1309.9,
+            "duration": 943.1
+        },
+        "Kaplica Sykstynska": {
+            "distance": 2409.5,
+            "duration": 1734.8
+        },
+        "Zamek Swietego Aniola": {
+            "distance": 1166.8,
+            "duration": 840.1
+        },
+        "Galeria Borghesse": {
+            "distance": 2694.0,
+            "duration": 1939.6
+        },
+        "Plac Wenecki w Rzymie": {
+            "distance": 1085.2,
+            "duration": 781.3
+        },
+        "Bazylika Matki Bozej Snieznej": {
+            "distance": 2616.1,
+            "duration": 1883.5
+        },
+        "Forum Romanum": {
+            "distance": 1751.6,
+            "duration": 1261.1
+        },
+        "Piazza del Popolo": {
+            "distance": 1512.4,
+            "duration": 1088.9
+        },
+        "Muzeum Kapitolinskie": {
+            "distance": 1277.1,
+            "duration": 919.5
+        },
+        "Campo de' Fiori": {
+            "distance": 557.0,
+            "duration": 401.1
+        },
+        "Termy Karakalli": {
+            "distance": 3310.5,
+            "duration": 2383.5
+        },
+        "Cirkus Maximus": {
+            "distance": 2028.5,
+            "duration": 1460.5
+        },
+        "Most Sw. Aniola": {
+            "distance": 780.6,
+            "duration": 562.0
+        },
+        "Janikulum": {
+            "distance": 2301.0,
+            "duration": 1656.7
+        },
+        "Terazza di Campidoglio": {
+            "distance": 1320.3,
+            "duration": 950.6
+        },
+        "MAXXI - National Museum of 21st Century Art": {
+            "distance": 3950.3,
+            "duration": 2844.2
+        },
+        "Kapitol": {
+            "distance": 1302.4,
+            "duration": 937.7
+        },
+        "Luk Konstantyna Wielkiego": {
+            "distance": 1886.3,
+            "duration": 1358.1
+        },
+        "Villa D'Este": {
+            "distance": 32748.6,
+            "duration": 23578.8
+        },
+        "Fontanna Czterech Rzek": {
+            "distance": 609.6,
+            "duration": 438.9
+        },
+        "Piazza Di Spagna": {
+            "distance": 2026.9,
+            "duration": 1459.3
+        },
+        "Usta Prawdy": {
+            "distance": 1220.1,
+            "duration": 878.5
+        },
+        "Hale Trajana": {
+            "distance": 1264.9,
+            "duration": 910.7
+        },
+        "Bazylika Swietej Marii na Zatybrzu": {
+            "distance": 1065.7,
+            "duration": 767.3
+        },
+        "Giardino degli Aranci": {
+            "distance": 1065.7,
+            "duration": 767.3
+        },
+        "Bazylika Swietego Klemensa": {
+            "distance": 2575.7,
+            "duration": 1854.5
+        },
+        "Domus Aurea": {
+            "distance": 2451.1,
+            "duration": 1764.8
+        },
+        "Bazylika Swietego Pawla za Murami": {
+            "distance": 4820.2,
+            "duration": 3470.5
+        },
+        "Willa Hadriana": {
+            "distance": 30808.8,
+            "duration": 22182.1
+        },
+        "Galeria Dorii Pamphij": {
+            "distance": 944.3,
+            "duration": 679.9
+        },
+        "Lorgo di Torre Argentina": {
+            "distance": 1147.8,
+            "duration": 826.4
+        },
+        "Piramida Cestiusza": {
+            "distance": 2660.3,
+            "duration": 1915.4
+        },
+        "Luk Tytusa": {
+            "distance": 1534.5,
+            "duration": 1104.8
+        },
+        "Teatr Marcellusa": {
+            "distance": 753.1,
+            "duration": 542.2
+        },
+        "Galleria Nazionale d'Arte Moderna": {
+            "distance": 2497.5,
+            "duration": 1798.2
+        }
+    },
+    "Zamek Swietego Aniola": {
+        "Koloseum": {
+            "distance": 3231.3,
+            "duration": 2326.5
+        },
+        "Ogrody Borghese": {
+            "distance": 2812.5,
+            "duration": 2025.0
+        },
+        "Pantheon": {
+            "distance": 1469.3,
+            "duration": 1057.9
+        },
+        "Fontanna di Trevi": {
+            "distance": 1830.9,
+            "duration": 1318.2
+        },
+        "Bazylika Swietego Piotra": {
+            "distance": 1341.4,
+            "duration": 965.8
+        },
+        "Muzea Watykanskie": {
+            "distance": 1655.0,
+            "duration": 1191.6
+        },
+        "Schody hiszpanskie": {
+            "distance": 1714.9,
+            "duration": 1234.7
+        },
+        "Kaplica Sykstynska": {
+            "distance": 1754.4,
+            "duration": 1263.2
+        },
+        "Piazza Navona": {
+            "distance": 1166.8,
+            "duration": 840.1
+        },
+        "Galeria Borghesse": {
+            "distance": 3082.3,
+            "duration": 2219.2
+        },
+        "Plac Wenecki w Rzymie": {
+            "distance": 2264.5,
+            "duration": 1630.4
+        },
+        "Bazylika Matki Bozej Snieznej": {
+            "distance": 3479.4,
+            "duration": 2505.1
+        },
+        "Forum Romanum": {
+            "distance": 2888.6,
+            "duration": 2079.8
+        },
+        "Piazza del Popolo": {
+            "distance": 1857.1,
+            "duration": 1337.1
+        },
+        "Muzeum Kapitolinskie": {
+            "distance": 2414.0,
+            "duration": 1738.1
+        },
+        "Campo de' Fiori": {
+            "distance": 1364.4,
+            "duration": 982.4
+        },
+        "Termy Karakalli": {
+            "distance": 4319.2,
+            "duration": 3109.8
+        },
+        "Cirkus Maximus": {
+            "distance": 3060.2,
+            "duration": 2203.3
+        },
+        "Most Sw. Aniola": {
+            "distance": 386.2,
+            "duration": 278.0
+        },
+        "Janikulum": {
+            "distance": 1872.1,
+            "duration": 1347.9
+        },
+        "Terazza di Campidoglio": {
+            "distance": 2457.3,
+            "duration": 1769.2
+        },
+        "MAXXI - National Museum of 21st Century Art": {
+            "distance": 4062.9,
+            "duration": 2925.2
+        },
+        "Kapitol": {
+            "distance": 2439.4,
+            "duration": 1756.3
+        },
+        "Luk Konstantyna Wielkiego": {
+            "distance": 2871.1,
+            "duration": 2067.1
+        },
+        "Villa D'Este": {
+            "distance": 33537.8,
+            "duration": 24146.9
+        },
+        "Fontanna Czterech Rzek": {
+            "distance": 814.4,
+            "duration": 586.3
+        },
+        "Piazza Di Spagna": {
+            "distance": 2371.6,
+            "duration": 1707.5
+        },
+        "Usta Prawdy": {
+            "distance": 2357.3,
+            "duration": 1697.2
+        },
+        "Hale Trajana": {
+            "distance": 2187.5,
+            "duration": 1575.0
+        },
+        "Bazylika Swietej Marii na Zatybrzu": {
+            "distance": 1333.9,
+            "duration": 960.4
+        },
+        "Giardino degli Aranci": {
+            "distance": 1333.9,
+            "duration": 960.4
+        },
+        "Bazylika Swietego Klemensa": {
+            "distance": 3558.8,
+            "duration": 2562.3
+        },
+        "Domus Aurea": {
+            "distance": 3434.2,
+            "duration": 2472.6
+        },
+        "Bazylika Swietego Pawla za Murami": {
+            "distance": 5317.6,
+            "duration": 3828.6
+        },
+        "Willa Hadriana": {
+            "distance": 31598.0,
+            "duration": 22750.3
+        },
+        "Galeria Dorii Pamphij": {
+            "distance": 1442.0,
+            "duration": 1038.3
+        },
+        "Lorgo di Torre Argentina": {
+            "distance": 1408.9,
+            "duration": 1014.4
+        },
+        "Piramida Cestiusza": {
+            "distance": 3669.1,
+            "duration": 2641.7
+        },
+        "Luk Tytusa": {
+            "distance": 2519.3,
+            "duration": 1813.9
+        },
+        "Teatr Marcellusa": {
+            "distance": 1932.4,
+            "duration": 1391.3
+        },
+        "Galleria Nazionale d'Arte Moderna": {
+            "distance": 2757.1,
+            "duration": 1985.1
+        }
+    },
+    "Galeria Borghesse": {
+        "Koloseum": {
+            "distance": 3388.9,
+            "duration": 2439.9
+        },
+        "Ogrody Borghese": {
+            "distance": 819.6,
+            "duration": 590.1
+        },
+        "Pantheon": {
+            "distance": 2473.9,
+            "duration": 1781.2
+        },
+        "Fontanna di Trevi": {
+            "distance": 2123.1,
+            "duration": 1528.6
+        },
+        "Bazylika Swietego Piotra": {
+            "distance": 4203.4,
+            "duration": 3026.4
+        },
+        "Muzea Watykanskie": {
+            "distance": 3936.2,
+            "duration": 2834.0
+        },
+        "Schody hiszpanskie": {
+            "distance": 1423.4,
+            "duration": 1024.8
+        },
+        "Kaplica Sykstynska": {
+            "distance": 3997.2,
+            "duration": 2877.9
+        },
+        "Piazza Navona": {
+            "distance": 2694.0,
+            "duration": 1939.6
+        },
+        "Zamek Swietego Aniola": {
+            "distance": 3082.3,
+            "duration": 2219.2
+        },
+        "Plac Wenecki w Rzymie": {
+            "distance": 2750.6,
+            "duration": 1980.4
+        },
+        "Bazylika Matki Bozej Snieznej": {
+            "distance": 2490.7,
+            "duration": 1793.3
+        },
+        "Forum Romanum": {
+            "distance": 3406.4,
+            "duration": 2452.5
+        },
+        "Piazza del Popolo": {
+            "distance": 1862.7,
+            "duration": 1341.1
+        },
+        "Muzeum Kapitolinskie": {
+            "distance": 3181.3,
+            "duration": 2290.5
+        },
+        "Campo de' Fiori": {
+            "distance": 3164.4,
+            "duration": 2278.3
+        },
+        "Termy Karakalli": {
+            "distance": 5328.6,
+            "duration": 3836.5
+        },
+        "Cirkus Maximus": {
+            "distance": 4114.8,
+            "duration": 2962.6
+        },
+        "Most Sw. Aniola": {
+            "distance": 2984.0,
+            "duration": 2148.4
+        },
+        "Janikulum": {
+            "distance": 4647.7,
+            "duration": 3346.3
+        },
+        "Terazza di Campidoglio": {
+            "distance": 3224.5,
+            "duration": 2321.6
+        },
+        "MAXXI - National Museum of 21st Century Art": {
+            "distance": 3355.5,
+            "duration": 2415.9
+        },
+        "Kapitol": {
+            "distance": 3188.2,
+            "duration": 2295.4
+        },
+        "Luk Konstantyna Wielkiego": {
+            "distance": 2966.3,
+            "duration": 2135.7
+        },
+        "Villa D'Este": {
+            "distance": 31159.9,
+            "duration": 22434.9
+        },
+        "Fontanna Czterech Rzek": {
+            "distance": 2537.2,
+            "duration": 1826.8
+        },
+        "Piazza Di Spagna": {
+            "distance": 1294.8,
+            "duration": 932.2
+        },
+        "Usta Prawdy": {
+            "distance": 3124.4,
+            "duration": 2249.5
+        },
+        "Hale Trajana": {
+            "distance": 2285.3,
+            "duration": 1645.4
+        },
+        "Bazylika Swietej Marii na Zatybrzu": {
+            "distance": 3652.8,
+            "duration": 2629.9
+        },
+        "Giardino degli Aranci": {
+            "distance": 3652.8,
+            "duration": 2629.9
+        },
+        "Bazylika Swietego Klemensa": {
+            "distance": 2843.4,
+            "duration": 2047.2
+        },
+        "Domus Aurea": {
+            "distance": 2736.8,
+            "duration": 1970.4
+        },
+        "Bazylika Swietego Pawla za Murami": {
+            "distance": 7079.2,
+            "duration": 5097.0
+        },
+        "Willa Hadriana": {
+            "distance": 29220.1,
+            "duration": 21038.3
+        },
+        "Galeria Dorii Pamphij": {
+            "distance": 1840.6,
+            "duration": 1325.2
+        },
+        "Lorgo di Torre Argentina": {
+            "distance": 1928.4,
+            "duration": 1388.4
+        },
+        "Piramida Cestiusza": {
+            "distance": 4815.2,
+            "duration": 3466.9
+        },
+        "Luk Tytusa": {
+            "distance": 2783.5,
+            "duration": 2004.1
+        },
+        "Teatr Marcellusa": {
+            "distance": 2621.0,
+            "duration": 1887.0
+        },
+        "Galleria Nazionale d'Arte Moderna": {
+            "distance": 1052.2,
+            "duration": 757.6
+        }
     }
 }
