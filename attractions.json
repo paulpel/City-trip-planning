@@ -617,31 +617,123 @@
       }
     },
     "Willa Hadriana": {
-      
+      "category": [
+        "Parki i ogrody",
+        "Architektura"
+      ],
+      "popularity": 9567,
+      "rating": 4.6,
+      "price": 14,
+      "timespend": 45,
+      "openinghours": [
+        "9:00",
+        "17:30"
+      ],
+      "cords": {
+        "latitude": 41.94788666898693, 
+        "longitude": 12.775941906188374
+      }
     },
     "Galeria Dorii Pamphij": {
-      
+      "category": [
+        "Muzea"
+      ],
+      "popularity": 4349,
+      "rating": 4.6,
+      "price": 18,
+      "timespend": 60,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.90383423721514, 
+        "longitude": 12.479683877318163
+      }
     },
-    "Lorgo di Torre Argentna": {
-      
+    "Lorgo di Torre Argentina": {
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 29517,
+      "rating": 4.5,
+      "price": 0,
+      "timespend": 45,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.907186507294284, 
+        "longitude": 12.477151457015914
+      }
     },
     "Piramida Cestiusza": {
-      
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 4821,
+      "rating": 4.3,
+      "price": 0,
+      "timespend": 15,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.88209140611965, 
+        "longitude": 12.479694222086707
+      }
     },
     "Luk Tytusa": {
-      
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 1602,
+      "rating": 4.7,
+      "price": 15,
+      "timespend": 30,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.89578734464445, 
+        "longitude": 12.487445822555708
+      }
     },
     "Teatr Marcellusa": {
-      
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 7967,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 45,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.898042941683784, 
+        "longitude": 12.480421236291251
+      }
     },
-    "Galleria Nazionale d'Arte Antica": {
-      
-    },
-    "Bazylika Matki Bozej Wiekszej": {
-      
-    },
-    "Palac Farnesse": {
-      
+    "Galleria Nazionale d'Arte Moderna": {
+      "category": [
+        "Muzea",
+        "Architektura"
+      ],
+      "popularity": 6799,
+      "rating": 4.6,
+      "price": 13,
+      "timespend": 60,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.92085266853483, 
+        "longitude": 12.48302525985943
+      }
     }
   }
 }
