@@ -78,7 +78,7 @@
       "popularity": 131091,
       "rating": 4.8,
       "price": 0,
-      "timespend": 15,
+      "timespend": 30,
       "openinghours": [
         "7:00",
         "19:00"
@@ -107,7 +107,8 @@
     },
     "Schody hiszpanskie": {
       "category": [
-        "Architektura"
+        "Architektura",
+        "Rekreacja"
       ],
       "popularity": 53739,
       "rating": 4.5,
@@ -128,7 +129,7 @@
       ],
       "popularity": 52205,
       "rating": 4.7,
-      "price": 0,
+      "price": 25,
       "timespend": 30,
       "openinghours": [
         "9:00",
@@ -199,7 +200,7 @@
       ],
       "popularity": 45727,
       "rating": 4.6,
-      "price": 20,
+      "price": 0,
       "timespend": 30,
       "openinghours": [
         "all day"
@@ -270,7 +271,7 @@
       "popularity": 12635,
       "rating": 4.7,
       "price": 16,
-      "timespend": 120,
+      "timespend": 90,
       "openinghours": [
         "9:30",
         "19:30"
@@ -376,7 +377,7 @@
       ],
       "popularity": 15567,
       "rating": 4.6,
-      "price": 0,
+      "price": 5,
       "timespend": 30,
       "openinghours": [
         "9:30",
@@ -422,40 +423,198 @@
       }
     },
     "Luk Konstantyna Wielkiego": {
-
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 4105,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89434869759415,  
+        "longitude": 12.490084668003005
+      }
     },
     "Villa D'Este": {
-
+      "category": [
+        "Architektura",
+        "Parki i ogrody",
+        "Rekreacja"
+      ],
+      "popularity": 24382,
+      "rating": 4.7,
+      "price": 16,
+      "timespend": 30,
+      "openinghours": [
+        "8:30",
+        "18:45"
+      ],
+      "cords": {
+        "latitude": 41.967375455046145,
+        "longitude": 12.796318738649441
+      }
     },
     "Fontanna Czterech Rzek": {
-      
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 7918,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.90277905511587,
+        "longitude": 12.472570168306676
+      }
     },
     "Piazza Di Spagna": {
-      
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 108539,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.91129763269128, 
+        "longitude": 12.480780000312022
+      }
     },
     "Usta Prawdy": {
-      
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 14843,
+      "rating": 4.2,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "9:30",
+        "17:50"
+      ],
+      "cords": {
+        "latitude": 41.893451917997005,  
+        "longitude": 12.481619413426023
+      }
     },
     "Hale Trajana": {
-      
+      "category": [
+        "Architektura",
+        "Parki i ogrody",
+        "Rekreacja"
+      ],
+      "popularity": 7585,
+      "rating": 4.6,
+      "price": 10,
+      "timespend": 60,
+      "openinghours": [
+        "9:30",
+        "19:30"
+      ],
+      "cords": {
+        "latitude": 41.89843108174972, 
+        "longitude": 12.485731068196854
+      }
     },
     "Bazylika Swietej Marii na Zatybrzu": {
-      
+      "category": [
+        "Architektura",
+        "Koscioly i katedry"
+      ],
+      "popularity": 14630,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "7:30",
+        "21:00"
+      ],
+      "cords": {
+        "latitude": 41.89506696299086, 
+        "longitude": 12.467773177037113
+      }
     },
     "Giardino degli Aranci": {
-      
+      "category": [
+        "Parki i ogrody",
+        "Rekreacja"
+      ],
+      "popularity": 17244,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 60,
+      "openinghours": [
+        "7:30",
+        "21:00"
+      ],
+      "cords": {
+        "latitude": 41.89506696299086, 
+        "longitude": 12.467773177037113
+      }
     },
     "Bazylika Swietego Klemensa": {
-      
+      "category": [
+        "Koscioly i katedry",
+        "Architektura"
+      ],
+      "popularity": 4536,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "9:45",
+        "17:30"
+      ],
+      "cords": {
+        "latitude": 41.89442485378962, 
+        "longitude": 12.497745313466577
+      }
     },
     "Domus Aurea": {
-      
-    },
-    "Kolumna trajana": {
-      
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 2207,
+      "rating": 4.6,
+      "price": 12,
+      "timespend": 45,
+      "openinghours": [
+        "9:00",
+        "17:00"
+      ],
+      "cords": {
+        "latitude": 41.89596780639131, 
+        "longitude": 12.495438690770124
+      }
     },
     "Bazylika Swietego Pawla za Murami": {
-      
+      "category": [
+        "Koscioly i katedry",
+        "Architektura"
+      ],
+      "popularity": 13009,
+      "rating": 4.8,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "7:00",
+        "18:30"
+      ],
+      "cords": {
+        "latitude": 41.864536356220974,
+        "longitude": 12.476560089715827
+      }
     },
     "Willa Hadriana": {
       
