@@ -1,13 +1,10 @@
 import configparser
-import copy
 import json
 import logging
-import profile
 import sys
 import time
 from typing import Dict
 
-import geopy.distance
 import openrouteservice
 
 
@@ -82,17 +79,18 @@ class CityTrip:
                         print(attraction_a, cords_a)
                         print(attraction_b, cords_b)
                         try:
-                            res = self.client.directions((cords_a, cords_b), profile="foot-walking")["routes"][0]["summary"]
-                            print(res)
-                        except:
-                            print("Something wrong")
+                            res = self.client.directions(
+                                (cords_a, cords_b),
+                                profile="foot-walking")["routes"][0]["summary"]
+                        except Exception:
+                            logging.error("Something wrong. Check API limit!")
 
                         dist[attraction_a][attraction_b] = res
                         time.sleep(1.5)
             else:
                 continue
             break
-    
+
         with open("distances.json", "w") as jf:
             json.dump(dist, jf, indent=4)
 
