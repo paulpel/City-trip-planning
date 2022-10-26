@@ -1,3 +1,6 @@
 **/vevn
 **/.vscode
 **/config.cfg
+**/start.json
+**/end.json
+**/__pycache__

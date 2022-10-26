@@ -1,101 +1,121 @@
-import configparser
 import json
 import logging
+import configparser
 import sys
 import time
-from typing import Dict
+from datetime import datetime
 
 import openrouteservice
+import numpy as np
 
 
 class CityTrip:
 
-    def __init__(self) -> None:
-        """Init function
-        """
+    def __init__(self, choosen_c, start_t, end_t, bud, start_p, forbidden):
         self.config()
-        self.connect_ors()
-        self.distances = {}
-        self.choosen_city = "rome"
+
+        self.choosen_city = choosen_c
+        self.start_time = datetime.strptime(start_t, "%H:%M")
+        self.end_time = datetime.strptime(end_t, "%H:%M")
+        self.budget = bud
+        self.start_point = start_p
+        self.forbidden_attractions = forbidden
+
+        if self.end_time > self.start_time:
+            self.time_left = self.end_time - self.start_time
+        else:
+            logging.error("Wrong time windows entered!")
+            sys.exit(-1)
+
+        self.current_atraction = "Koloseum"
 
         self.data = self.load_data()
-        self.cities = list(self.data.keys())
+        self.distances = self.load_distances()
 
-    def main(self) -> None:
-        """Main function of City Planning App
-        """
-        self.calc_distances()
+        self.prob_matrix()
+        self.calc_distance_start_end_point()
 
-    def config(self):
-        """Configure logging and get config
-        """
-        logging.basicConfig(
-            format="[%(asctime)s] [%(levelname)s] [%(filename)s %(funcName)s:%(lineno)d] Msg: %(message)s")
-        config = configparser.ConfigParser()
-        config.read('config.cfg')
-        self.api_key = config["ORS"]["api_key"]
+    def main(self):
+        self.check_time()
 
-    def connect_ors(self):
-        self.client = openrouteservice.Client(key=self.api_key)
+    def check_time(self):
+        pass
 
-    def load_data(self) -> Dict:
-        """Load data from json
+    def prob_matrix(self):
+        all_nodes = list(self.data[self.choosen_city].keys())
+        all_nodes.append("start")
+        prob_m = np.ones((len(all_nodes), len(all_nodes)))
+        np.fill_diagonal(prob_m, 0)
 
-        :return: attractions mapped to cities
-        :rtype: Dict
-        """
+        for attr in self.forbidden_attractions:
+            indx = all_nodes.index(attr)
+            for row in prob_m:
+                row[indx] = 0
+
+        self.probability_matrix = prob_m
+        self.attractions_list = all_nodes
+
+    def calc_distance_start_end_point(self, test=True):
+        if test:
+            with open("start.json") as jf:
+                self.distances["start"] = json.load(jf)
+        else:
+            client = openrouteservice.Client(key=self.api_key)
+            start = {}
+
+            all_attractions = list(self.data[self.choosen_city].keys())
+            i = 1
+            for attraction in all_attractions:
+                logging.info(f"Calculating distances... {i/len(all_attractions)*100} %")
+                cords_a = (
+                    self.data[self.choosen_city][attraction]["cords"]["longitude"],
+                    self.data[self.choosen_city][attraction]["cords"]["latitude"]
+                    )
+                distance = client.directions(
+                    (cords_a, self.start_point),
+                    profile="foot-walking")["routes"][0]["summary"]
+                start[attraction] = distance
+                time.sleep(1.5)
+                i += 1
+
+            self.distances["start"] = start
+
+    def load_data(self):
         with open("attractions.json") as jf:
             data = json.load(jf)
 
         if data:
             return data
         else:
-            logging.error("Data empty!")
+            logging.error(f"Attracions data empty! City: {self.choosen_city}")
             sys.exit(-1)
 
-    def calc_distances(self):
-        """Calculate distances beetween all attraction combination
-        """
-        with open("distances.json") as jf:
+    def load_distances(self):
+        file_name = f"distances_{self.choosen_city}.json"
+        with open(file_name) as jf:
             dist = json.load(jf)
 
-        all_attractions = list(self.data[self.choosen_city].keys())
+        if dist:
+            return dist
+        else:
+            logging.error(f"Distance data empty! City: {self.choosen_city}")
+            sys.exit(-1)
 
-        for attraction_a in all_attractions:
-            if attraction_a not in dist:
-                dist[attraction_a] = {}
-
-                cords_a = (
-                    self.data[self.choosen_city][attraction_a]["cords"]["longitude"],
-                    self.data[self.choosen_city][attraction_a]["cords"]["latitude"]
-                    )
-
-                for attraction_b in all_attractions:
-                    if attraction_a != attraction_b:
-                        cords_b = (
-                            self.data[self.choosen_city][attraction_b]["cords"]["longitude"],
-                            self.data[self.choosen_city][attraction_b]["cords"]["latitude"]
-                            )
-                        print(attraction_a, cords_a)
-                        print(attraction_b, cords_b)
-                        try:
-                            res = self.client.directions(
-                                (cords_a, cords_b),
-                                profile="foot-walking")["routes"][0]["summary"]
-                        except Exception:
-                            logging.error("Something wrong. Check API limit!")
-
-                        dist[attraction_a][attraction_b] = res
-                        time.sleep(1.5)
-            else:
-                continue
-            break
-
-        with open("distances.json", "w") as jf:
-            json.dump(dist, jf, indent=4)
+    def config(self):
+        config = configparser.ConfigParser()
+        config.read('config.cfg')
+        logging.basicConfig(format=config["logging"]["format"], level=logging.INFO)
+        self.api_key = config["ORS"]["api_key"]
 
 
 if __name__ == "__main__":
 
-    ct_obj = CityTrip()
+    ct_obj = CityTrip(
+        "rome",
+        "9:00",
+        "19:00",
+        "100",
+        (12.490514900515363, 41.90862361898305),
+        ["Koloseum"])
+
     ct_obj.main()
