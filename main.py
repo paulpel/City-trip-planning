@@ -2,6 +2,7 @@ import json
 import logging
 import configparser
 import sys
+import random
 import time
 from datetime import datetime
 
@@ -27,22 +28,66 @@ class CityTrip:
             logging.error("Wrong time windows entered!")
             sys.exit(-1)
 
-        self.current_atraction = "Koloseum"
+        self.current_atraction = "start"
 
         self.data = self.load_data()
         self.distances = self.load_distances()
 
-        self.prob_matrix()
+        self.prob_matrix_f()
         self.calc_distance_start_end_point()
 
+        self.amount_of_ants = 10
+        self.iterations = 1
+
     def main(self):
-        self.check_time()
+        self.check_time_start()
+        self.check_budget_start()
+        
+        for i in range(self.iterations):
+            for ant in range(self.amount_of_ants):
+                solutions = []
+                print("another ant")
 
-    def check_time(self):
-        pass
+                attracions_left = self.attractions_list.copy()
+                temp_prob = self.probability_matrix.copy()
 
-    def prob_matrix(self):
-        all_nodes = list(self.data[self.choosen_city].keys())
+                while attracions_left:
+                    indx = self.attractions_list.index(self.current_atraction)
+                    probability = temp_prob[indx]
+                    if sum(probability) == 0:
+                        break
+                    destination = random.choices(self.attractions_list, weights=probability)[0]
+
+                    indx_dest = self.attractions_list.index(destination)
+                    attracions_left.remove(destination)
+                    for row in temp_prob:
+                        row[indx_dest] = 0
+                    solutions.append(destination)
+                print(solutions)
+
+    def check_time_start(self):
+        for attraction in self.attractions_list:
+            if attraction != "start":
+                time_travel = float(
+                    self.distances[self.current_atraction][attraction]["duration"])
+                time_spend = float(self.data[attraction]["timespend"])*60
+
+                if self.time_left.total_seconds() - (time_travel*2 + time_spend) < 0:
+                    indx = self.attractions_list.index(attraction)
+                    for row in self.probability_matrix:
+                        row[indx] = 0
+
+    def check_budget_start(self):
+        for attraction in self.attractions_list:
+            if attraction != "start":
+                money_spend = float(self.data[attraction]["price"])
+                if money_spend > self.budget:
+                    indx = self.attractions_list.index(attraction)
+                    for row in self.probability_matrix:
+                        row[indx] = 0
+
+    def prob_matrix_f(self):
+        all_nodes = list(self.data.keys())
         all_nodes.append("start")
         prob_m = np.ones((len(all_nodes), len(all_nodes)))
         np.fill_diagonal(prob_m, 0)
@@ -63,13 +108,13 @@ class CityTrip:
             client = openrouteservice.Client(key=self.api_key)
             start = {}
 
-            all_attractions = list(self.data[self.choosen_city].keys())
+            all_attractions = list(self.data.keys())
             i = 1
             for attraction in all_attractions:
                 logging.info(f"Calculating distances... {i/len(all_attractions)*100} %")
                 cords_a = (
-                    self.data[self.choosen_city][attraction]["cords"]["longitude"],
-                    self.data[self.choosen_city][attraction]["cords"]["latitude"]
+                    self.data[attraction]["cords"]["longitude"],
+                    self.data[attraction]["cords"]["latitude"]
                     )
                 distance = client.directions(
                     (cords_a, self.start_point),
@@ -85,7 +130,7 @@ class CityTrip:
             data = json.load(jf)
 
         if data:
-            return data
+            return data[self.choosen_city]
         else:
             logging.error(f"Attracions data empty! City: {self.choosen_city}")
             sys.exit(-1)
@@ -106,7 +151,7 @@ class CityTrip:
         config.read('config.cfg')
         logging.basicConfig(format=config["logging"]["format"], level=logging.INFO)
         self.api_key = config["ORS"]["api_key"]
-
+        np.set_printoptions(threshold=sys.maxsize)
 
 if __name__ == "__main__":
 
@@ -114,7 +159,7 @@ if __name__ == "__main__":
         "rome",
         "9:00",
         "19:00",
-        "100",
+        20,
         (12.490514900515363, 41.90862361898305),
         ["Koloseum"])
 
