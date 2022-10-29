@@ -5,6 +5,7 @@ import sys
 import random
 import time
 from datetime import datetime
+from itertools import tee
 
 import openrouteservice
 import numpy as np
@@ -42,10 +43,12 @@ class CityTrip:
     def main(self):
         self.check_time_start()
         self.check_budget_start()
-        
+
+        all_solutions = []
         for i in range(self.iterations):
+            one_iter_solutions = []
             for ant in range(self.amount_of_ants):
-                solutions = []
+                one_ant_solution = ["start"]
                 print("another ant")
 
                 attracions_left = self.attractions_list.copy()
@@ -62,14 +65,54 @@ class CityTrip:
                     attracions_left.remove(destination)
                     for row in temp_prob:
                         row[indx_dest] = 0
-                    solutions.append(destination)
-                print(solutions)
+
+                    if self.check_limitations(one_ant_solution, destination):
+                        one_ant_solution.append(destination)
+                one_ant_solution.append("start")
+                print(one_ant_solution)
+
+    def check_limitations(self, path, destination):
+        total_time = 0
+        for attr in path:
+            if attr != "start":
+                time_spend = float(self.data[attr]["timespend"])*60
+                total_time += time_spend
+        
+        for elem in self.pairwise(path):
+            time_travel = float(
+                    self.distances[elem[0]][elem[1]]["duration"])
+            total_time += time_travel
+        
+        total_time += float(
+                    self.distances[path[-1]][destination]["duration"])
+        total_time += float(
+                    self.distances["start"][destination]["duration"])
+        total_time +=  float(self.data[destination]["timespend"])*60
+
+        total_money = 0
+        for attraction in path:
+            if attraction != "start":
+                money_spend = float(self.data[attraction]["price"])
+                total_money += money_spend
+
+        money_dest = float(self.data[destination]["price"])
+        total_money += money_dest
+
+        if total_time > self.time_left.total_seconds() and total_money > self.budget:
+            return False
+        else:
+            return True
+        
+    def pairwise(self, iterable):
+        a, b = tee(iterable)
+        next(b, None)
+        return zip(a, b)
 
     def check_time_start(self):
         for attraction in self.attractions_list:
             if attraction != "start":
                 time_travel = float(
-                    self.distances[self.current_atraction][attraction]["duration"])
+                    self.distances["start"][attraction]["duration"])
                 time_spend = float(self.data[attraction]["timespend"])*60
 
                 if self.time_left.total_seconds() - (time_travel*2 + time_spend) < 0:
@@ -152,6 +195,7 @@ class CityTrip:
         logging.basicConfig(format=config["logging"]["format"], level=logging.INFO)
         self.api_key = config["ORS"]["api_key"]
         np.set_printoptions(threshold=sys.maxsize)
+
 
 if __name__ == "__main__":
 

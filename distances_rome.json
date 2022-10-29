@@ -5100,9 +5100,12 @@
             "distance": 2152.4,
             "duration": 1549.7
         },
-        "Giardino degli Aranci": {},
-        "Bazylika Swietego Klemensa": {
+        "Giardino degli Aranci": {
             "distance": 3019.0,
+            "duration": 1320.0
+        },
+        "Bazylika Swietego Klemensa": {
+            "distance": 1600,
             "duration": 2173.6
         },
         "Domus Aurea": {
@@ -5263,7 +5266,10 @@
             "distance": 2152.4,
             "duration": 1549.7
         },
-        "Bazylika Swietej Marii na Zatybrzu": {},
+        "Bazylika Swietej Marii na Zatybrzu": {
+            "distance": 1600,
+            "duration": 2173.6
+        },
         "Bazylika Swietego Klemensa": {
             "distance": 3019.0,
             "duration": 2173.6
