@@ -55,10 +55,10 @@ class CityTrip:
 
         all_solutions = []
         for i in range(self.iterations):
-            one_iter_solutions = []
+            epoch_solutions = []
+            epoch_criteria = []
             for ant in range(self.amount_of_ants):
                 one_ant_solution = ["start"]
-                one_ant_criteria = []
 
                 attracions_left = self.attractions_list.copy()
                 temp_prob = self.probability_matrix.copy()
@@ -78,8 +78,30 @@ class CityTrip:
                     if self.check_limitations(one_ant_solution, destination):
                         one_ant_solution.append(destination)
                 one_ant_solution.append("start")
-                one_iter_solutions.append(one_ant_solution)
-                self.calc_criteria(one_ant_solution)
+                one_ant_criteria = self.calc_criteria(one_ant_solution)
+
+                epoch_solutions.append(one_ant_solution)
+                epoch_criteria.append(one_ant_criteria)
+            normalized_epoch_criteraia = self.normalize_criteria(epoch_criteria)
+
+    def normalize_criteria(self, epoch_criteria):
+        money_list = [item[0] for item in epoch_criteria]
+        pref_list = [item[1] for item in epoch_criteria]
+        pop_list = [item[2] for item in epoch_criteria]
+        amount_list = [item[3] for item in epoch_criteria]
+
+        norm_money_list = [
+            (i - min(money_list))/(max(money_list)-min(money_list)) for i in money_list]
+        norm_pref_list = [
+            (i - min(pref_list))/(max(pref_list)-min(pref_list)) for i in pref_list]
+        norm_pop_list = [
+            (i - min(pop_list))/(max(pop_list)-min(pop_list)) for i in pop_list]
+        norm_amount_list = [
+            (i - min(amount_list))/(max(amount_list)-min(amount_list)) for i in amount_list]
+        array_normalized = np.array([norm_money_list, norm_pref_list, norm_pop_list, norm_amount_list])
+        array_normalized = array_normalized.transpose()
+
+        return array_normalized
 
     def calc_criteria(self, path):
         criteria = []
@@ -103,17 +125,18 @@ class CityTrip:
         preferences = preferences/len(categories)
         criteria.append(preferences)
 
-        # popular, highly reviewed popraw!!!!!
+        # popular, highly reviewed
         popular = 0
         for atr in only_attractions:
-            popular += self.data[atr]["rating"]*self.data[atr]["popularity"]
+            time_spend = self.data[atr]["timespend"]
+            popular += time_spend * self.data[atr]["rating"]*self.data[atr]["popularity"]
         criteria.append(popular)
 
         # amount seen
-        criteria.append(len(path))
+        criteria.append(len(only_attractions))
+        return criteria
 
     def check_limitations(self, path, destination):
-
         total_time = 0
         for attr in path:
             if attr != "start":
@@ -144,7 +167,6 @@ class CityTrip:
             return False
         else:
             return True
-
     
     def pairwise(self, iterable):
         a, b = tee(iterable)
