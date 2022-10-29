@@ -13,7 +13,7 @@ import numpy as np
 
 class CityTrip:
 
-    def __init__(self, choosen_c, start_t, end_t, bud, start_p, forbidden):
+    def __init__(self, choosen_c, start_t, end_t, bud, start_p, forbidden, preferences):
         self.config()
 
         self.choosen_city = choosen_c
@@ -22,6 +22,15 @@ class CityTrip:
         self.budget = bud
         self.start_point = start_p
         self.forbidden_attractions = forbidden
+        self.preferences = preferences
+        self.preferences_order = [
+            "Architektura",
+            "Koscioly i katedry",
+            "Muzea",
+            "Parki i ogrody",
+            "Rekreacja",
+            "Punkt widokowy"
+        ]
 
         if self.end_time > self.start_time:
             self.time_left = self.end_time - self.start_time
@@ -49,7 +58,7 @@ class CityTrip:
             one_iter_solutions = []
             for ant in range(self.amount_of_ants):
                 one_ant_solution = ["start"]
-                print("another ant")
+                one_ant_criteria = []
 
                 attracions_left = self.attractions_list.copy()
                 temp_prob = self.probability_matrix.copy()
@@ -69,40 +78,93 @@ class CityTrip:
                     if self.check_limitations(one_ant_solution, destination):
                         one_ant_solution.append(destination)
                 one_ant_solution.append("start")
-                print(one_ant_solution)
+                one_iter_solutions.append(one_ant_solution)
+                self.calc_criteria(one_ant_solution)
 
-    def check_limitations(self, path, destination):
-        total_time = 0
-        for attr in path:
-            if attr != "start":
-                time_spend = float(self.data[attr]["timespend"])*60
-                total_time += time_spend
-        
-        for elem in self.pairwise(path):
-            time_travel = float(
-                    self.distances[elem[0]][elem[1]]["duration"])
-            total_time += time_travel
-        
-        total_time += float(
-                    self.distances[path[-1]][destination]["duration"])
-        total_time += float(
-                    self.distances["start"][destination]["duration"])
-        total_time +=  float(self.data[destination]["timespend"])*60
+    def calc_criteria(self, path):
+        criteria = []
+        only_attractions = [item for item in path if item != "start"]
 
-        total_money = 0
-        for attraction in path:
-            if attraction != "start":
-                money_spend = float(self.data[attraction]["price"])
-                total_money += money_spend
+        # money
+        money = 0
+        for atr in only_attractions:
+            money_spend = float(self.data[atr]["price"])
+            money += money_spend
+        criteria.append(money)
 
-        money_dest = float(self.data[destination]["price"])
-        total_money += money_dest
+        # preferences
+        preferences = 0
+        for atr in only_attractions:
+            categories = self.data[atr]["category"]
+            time_spend = self.data[atr]["timespend"]
+            for cat in categories:
+                preferences += time_spend * self.preferences[
+                    self.preferences_order.index(cat)]
+        preferences = preferences/len(categories)
+        criteria.append(preferences)
 
-        if total_time > self.time_left.total_seconds() and total_money > self.budget:
-            return False
+        # popular, highly reviewed popraw!!!!!
+        popular = 0
+        for atr in only_attractions:
+            popular += self.data[atr]["rating"]*self.data[atr]["popularity"]
+        criteria.append(popular)
+
+        # amount seen
+        criteria.append(len(path))
+
+    def check_limitations(self, path, destination=None):
+        if destination:
+            total_time = 0
+            for attr in path:
+                if attr != "start":
+                    time_spend = float(self.data[attr]["timespend"])*60
+                    total_time += time_spend
+            
+            for elem in self.pairwise(path):
+                time_travel = float(
+                        self.distances[elem[0]][elem[1]]["duration"])
+                total_time += time_travel
+            
+            total_time += float(
+                        self.distances[path[-1]][destination]["duration"])
+            total_time += float(
+                        self.distances["start"][destination]["duration"])
+            total_time +=  float(self.data[destination]["timespend"])*60
+
+            total_money = 0
+            for attraction in path:
+                if attraction != "start":
+                    money_spend = float(self.data[attraction]["price"])
+                    total_money += money_spend
+
+            money_dest = float(self.data[destination]["price"])
+            total_money += money_dest
+
+            if total_time > self.time_left.total_seconds() or total_money > self.budget:
+                return False
+            else:
+                return True
         else:
-            return True
-        
+            total_time = 0
+            for attr in path:
+                if attr != "start":
+                    time_spend = float(self.data[attr]["timespend"])/60
+                    total_time += time_spend
+
+            for elem in self.pairwise(path):
+                time_travel = float(
+                        self.distances[elem[0]][elem[1]]["duration"]/3600)
+                total_time += time_travel
+            total_time += float(
+                self.distances["start"][path[-1]]["duration"]/3600)
+
+            total_money = 0
+            for attraction in path:
+                if attraction != "start":
+                    money_spend = float(self.data[attraction]["price"])
+                    total_money += money_spend
+            print(total_time, total_money)
+    
     def pairwise(self, iterable):
         a, b = tee(iterable)
         next(b, None)
@@ -205,6 +267,7 @@ if __name__ == "__main__":
         "19:00",
         20,
         (12.490514900515363, 41.90862361898305),
-        ["Koloseum"])
+        ["Koloseum"],
+        [3, 3, 3, 4, 3, 4])
 
     ct_obj.main()
