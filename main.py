@@ -112,58 +112,39 @@ class CityTrip:
         # amount seen
         criteria.append(len(path))
 
-    def check_limitations(self, path, destination=None):
-        if destination:
-            total_time = 0
-            for attr in path:
-                if attr != "start":
-                    time_spend = float(self.data[attr]["timespend"])*60
-                    total_time += time_spend
-            
-            for elem in self.pairwise(path):
-                time_travel = float(
-                        self.distances[elem[0]][elem[1]]["duration"])
-                total_time += time_travel
-            
-            total_time += float(
-                        self.distances[path[-1]][destination]["duration"])
-            total_time += float(
-                        self.distances["start"][destination]["duration"])
-            total_time +=  float(self.data[destination]["timespend"])*60
+    def check_limitations(self, path, destination):
 
-            total_money = 0
-            for attraction in path:
-                if attraction != "start":
-                    money_spend = float(self.data[attraction]["price"])
-                    total_money += money_spend
+        total_time = 0
+        for attr in path:
+            if attr != "start":
+                time_spend = float(self.data[attr]["timespend"])*60
+                total_time += time_spend
+        
+        for elem in self.pairwise(path):
+            time_travel = float(
+                    self.distances[elem[0]][elem[1]]["duration"])
+            total_time += time_travel
+        
+        total_time += float(
+                    self.distances[path[-1]][destination]["duration"])
+        total_time += float(
+                    self.distances["start"][destination]["duration"])
+        total_time +=  float(self.data[destination]["timespend"])*60
 
-            money_dest = float(self.data[destination]["price"])
-            total_money += money_dest
+        total_money = 0
+        for attraction in path:
+            if attraction != "start":
+                money_spend = float(self.data[attraction]["price"])
+                total_money += money_spend
 
-            if total_time > self.time_left.total_seconds() or total_money > self.budget:
-                return False
-            else:
-                return True
+        money_dest = float(self.data[destination]["price"])
+        total_money += money_dest
+
+        if total_time > self.time_left.total_seconds() or total_money > self.budget:
+            return False
         else:
-            total_time = 0
-            for attr in path:
-                if attr != "start":
-                    time_spend = float(self.data[attr]["timespend"])/60
-                    total_time += time_spend
+            return True
 
-            for elem in self.pairwise(path):
-                time_travel = float(
-                        self.distances[elem[0]][elem[1]]["duration"]/3600)
-                total_time += time_travel
-            total_time += float(
-                self.distances["start"][path[-1]]["duration"]/3600)
-
-            total_money = 0
-            for attraction in path:
-                if attraction != "start":
-                    money_spend = float(self.data[attraction]["price"])
-                    total_money += money_spend
-            print(total_time, total_money)
     
     def pairwise(self, iterable):
         a, b = tee(iterable)
