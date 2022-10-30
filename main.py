@@ -83,6 +83,20 @@ class CityTrip:
                 epoch_solutions.append(one_ant_solution)
                 epoch_criteria.append(one_ant_criteria)
             normalized_epoch_criteraia = self.normalize_criteria(epoch_criteria)
+            self.update_pheromones(normalized_epoch_criteraia)
+
+    def update_pheromones(self, normalized_epoch_criteria):
+        random_criteria = random.randint(0, 3)
+        random_criteria = 0
+        criteria_list = [i[random_criteria] for i in normalized_epoch_criteria]
+        min_val = min(criteria_list)
+        max_val = max(criteria_list)
+        pheromones = 0
+        for index, item in enumerate(criteria_list):
+            if random_criteria == 0:
+                criteria_list[index] = 1-item
+        
+        # iterate over solutions and update pheromones for paths accordingly
 
     def normalize_criteria(self, epoch_criteria):
         money_list = [item[0] for item in epoch_criteria]
@@ -142,17 +156,15 @@ class CityTrip:
             if attr != "start":
                 time_spend = float(self.data[attr]["timespend"])*60
                 total_time += time_spend
-        
         for elem in self.pairwise(path):
             time_travel = float(
                     self.distances[elem[0]][elem[1]]["duration"])
             total_time += time_travel
-        
         total_time += float(
                     self.distances[path[-1]][destination]["duration"])
         total_time += float(
                     self.distances["start"][destination]["duration"])
-        total_time +=  float(self.data[destination]["timespend"])*60
+        total_time += float(self.data[destination]["timespend"])*60
 
         total_money = 0
         for attraction in path:
@@ -167,7 +179,7 @@ class CityTrip:
             return False
         else:
             return True
-    
+
     def pairwise(self, iterable):
         a, b = tee(iterable)
         next(b, None)
