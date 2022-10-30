@@ -1,6 +1,7 @@
 import json
 import logging
 import configparser
+from stringprep import in_table_d1
 import sys
 import random
 import time
@@ -83,20 +84,29 @@ class CityTrip:
                 epoch_solutions.append(one_ant_solution)
                 epoch_criteria.append(one_ant_criteria)
             normalized_epoch_criteraia = self.normalize_criteria(epoch_criteria)
-            self.update_pheromones(normalized_epoch_criteraia)
+            pheromones = self.get_pheromones(normalized_epoch_criteraia)
+            self.update_pheromones(pheromones, epoch_solutions)
+        # to do:
+        # decay pheromones - minimum set
+        # set maximum
+        # leave only dominant solutions
+        # AHP
 
-    def update_pheromones(self, normalized_epoch_criteria):
+    def update_pheromones(self, pheromones, paths):
+        for path, pheromone in zip(paths, pheromones):
+            for pair in self.pairwise(path):
+                indx_1 = self.attractions_list.index(pair[0])
+                indx_2 = self.attractions_list.index(pair[1])
+                self.probability_matrix[indx_1][indx_2] += pheromone
+                self.probability_matrix[indx_2][indx_1] += pheromone
+
+    def get_pheromones(self, normalized_epoch_criteria):
         random_criteria = random.randint(0, 3)
-        random_criteria = 0
         criteria_list = [i[random_criteria] for i in normalized_epoch_criteria]
-        min_val = min(criteria_list)
-        max_val = max(criteria_list)
-        pheromones = 0
         for index, item in enumerate(criteria_list):
             if random_criteria == 0:
                 criteria_list[index] = 1-item
-        
-        # iterate over solutions and update pheromones for paths accordingly
+        return criteria_list
 
     def normalize_criteria(self, epoch_criteria):
         money_list = [item[0] for item in epoch_criteria]
