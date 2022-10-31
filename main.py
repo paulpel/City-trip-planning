@@ -9,11 +9,12 @@ from itertools import tee
 
 import openrouteservice
 import numpy as np
+import ahpy
 
 
 class CityTrip:
 
-    def __init__(self, choosen_c, start_t, end_t, bud, start_p, forbidden, preferences):
+    def __init__(self, choosen_c, start_t, end_t, bud, start_p, forbidden, preferences, comparisons):
         self.config()
 
         self.choosen_city = choosen_c
@@ -31,6 +32,12 @@ class CityTrip:
             "Rekreacja",
             "Punkt widokowy"
         ]
+        self.money_pref_c = comparisons[0]
+        self.money_pop_c = comparisons[1]
+        self.money_amount_c = comparisons[2]
+        self.pref_pop_c = comparisons[3]
+        self.pref_amount_c = comparisons[4]
+        self.pop_amount_c = comparisons[5]
 
         if self.end_time > self.start_time:
             self.time_left = self.end_time - self.start_time
@@ -47,11 +54,12 @@ class CityTrip:
         self.calc_distance_start_end_point()
 
         self.amount_of_ants = 100
-        self.iterations = 100
+        self.iterations = 300
         self.divide_pheromones = 2  # 1: (0, 1), 2: (0, 0.5)
         self.maximum_weight = 20
         self.minimum_weight = 1
         self.decay_value = 0.1
+        self.amount_of_solutions = 3
 
         self.dominant_solutions = []
         self.dominant_solutions_criteria = []
@@ -93,10 +101,46 @@ class CityTrip:
             self.update_pheromones(pheromones, epoch_solutions)
             self.decay_pheromones()
             self.get_dominant(epoch_solutions, epoch_criteria)
-        print(len(self.dominant_solutions_criteria))
-        print(len(self.dominant_solutions))
-        # to do:
-        # AHP
+
+        final_normalized = self.normalize_criteria(self.dominant_solutions_criteria)
+        index_best_solutions = self.ahp_sort_solutions(final_normalized)
+
+        best_sol = []
+        for ind in index_best_solutions:
+            best_sol.append(self.dominant_solutions[ind])
+        best_sol.reverse()
+        return best_sol
+
+    def ahp_sort_solutions(self, criteria_values):
+        criteria_sum = []
+        criteria_comparisons = {
+            ("money", "preferences"): self.money_pref_c,
+            ("money", "popular"): self.money_pop_c,
+            ("money", "amount"): self.money_amount_c,
+            ("preferences", "popular"): self.pref_pop_c,
+            ("preferences", "amount"): self.pref_amount_c,
+            ("popular", "amount"): self.pop_amount_c
+        }
+
+        criteria = ahpy.Compare(
+            name="Criteria",
+            comparisons=criteria_comparisons,
+            precision=3,
+            random_index="saaty")
+
+        money_weight = criteria.target_weights["money"]
+        pref_weight = criteria.target_weights["preferences"]
+        popular_weight = criteria.target_weights["popular"]
+        amount_weight = criteria.target_weights["amount"]
+
+        for solution in criteria_values:
+            total = solution[0]*money_weight\
+                + solution[1]*pref_weight\
+                + solution[2]*popular_weight\
+                + solution[3]*amount_weight
+            criteria_sum.append(total)
+        from_worst_to_best = np.argsort(criteria_sum)
+        return from_worst_to_best[-self.amount_of_solutions:]
 
     def get_dominant(self, epoch_solutions, epoch_criteria):
         self.dominant_solutions_criteria.extend(epoch_criteria)
@@ -378,7 +422,8 @@ if __name__ == "__main__":
         20,
         (12.490514900515363, 41.90862361898305),
         ["Koloseum"],
-        [3, 3, 3, 4, 3, 4])
-    start = time.time()
-    ct_obj.main()
-    end = time.time()
+        [3, 3, 3, 4, 3, 4],
+        [1, 2, 1, 3, 1, 1])
+
+    sol = ct_obj.main()
+    print(sol)
