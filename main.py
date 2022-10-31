@@ -48,13 +48,18 @@ class CityTrip:
         self.calc_distance_start_end_point()
 
         self.amount_of_ants = 10
-        self.iterations = 1
+        self.iterations = 1000
+        self.divide_pheromones = 1
+        self.maximum_weight = 100
+        self.minimum_weight = 0.1
+        self.decay_value = 0.3
+
+        self.dominant_solutions = []
 
     def main(self):
         self.check_time_start()
         self.check_budget_start()
 
-        all_solutions = []
         for i in range(self.iterations):
             epoch_solutions = []
             epoch_criteria = []
@@ -86,11 +91,18 @@ class CityTrip:
             normalized_epoch_criteraia = self.normalize_criteria(epoch_criteria)
             pheromones = self.get_pheromones(normalized_epoch_criteraia)
             self.update_pheromones(pheromones, epoch_solutions)
+            self.decay_pheromones()
         # to do:
-        # decay pheromones - minimum set
-        # set maximum
         # leave only dominant solutions
         # AHP
+
+    def decay_pheromones(self):
+        for i in range(len(self.probability_matrix)):
+            for j in range(len(self.probability_matrix[i])):
+                if self.probability_matrix[i][j] != 0:
+                    self.probability_matrix[i][j] -= self.decay_value
+                    if self.probability_matrix[i][j] <= 0:
+                        self.probability_matrix[i][j] = self.minimum_weight
 
     def update_pheromones(self, pheromones, paths):
         for path, pheromone in zip(paths, pheromones):
@@ -100,12 +112,18 @@ class CityTrip:
                 self.probability_matrix[indx_1][indx_2] += pheromone
                 self.probability_matrix[indx_2][indx_1] += pheromone
 
+                if self.probability_matrix[indx_1][indx_2] > self.maximum_weight:
+                    self.probability_matrix[indx_1][indx_2] = self.maximum_weight
+                    self.probability_matrix[indx_2][indx_1] = self.maximum_weight
+
     def get_pheromones(self, normalized_epoch_criteria):
         random_criteria = random.randint(0, 3)
         criteria_list = [i[random_criteria] for i in normalized_epoch_criteria]
         for index, item in enumerate(criteria_list):
             if random_criteria == 0:
-                criteria_list[index] = 1-item
+                criteria_list[index] = (1-item)/self.divide_pheromones
+            else:
+                criteria_list[index] = item/self.divide_pheromones
         return criteria_list
 
     def normalize_criteria(self, epoch_criteria):
@@ -113,15 +131,26 @@ class CityTrip:
         pref_list = [item[1] for item in epoch_criteria]
         pop_list = [item[2] for item in epoch_criteria]
         amount_list = [item[3] for item in epoch_criteria]
-
-        norm_money_list = [
-            (i - min(money_list))/(max(money_list)-min(money_list)) for i in money_list]
-        norm_pref_list = [
-            (i - min(pref_list))/(max(pref_list)-min(pref_list)) for i in pref_list]
-        norm_pop_list = [
-            (i - min(pop_list))/(max(pop_list)-min(pop_list)) for i in pop_list]
-        norm_amount_list = [
-            (i - min(amount_list))/(max(amount_list)-min(amount_list)) for i in amount_list]
+        if money_list.count(money_list[0]) == len(money_list):
+            norm_money_list = [0.5 for i in money_list]
+        else:
+            norm_money_list = [
+                (i - min(money_list))/(max(money_list)-min(money_list)) for i in money_list]
+        if pref_list.count(pref_list[0]) == len(pref_list):
+            norm_pref_list = [0.5 for i in pref_list]
+        else:
+            norm_pref_list = [
+                (i - min(pref_list))/(max(pref_list)-min(pref_list)) for i in pref_list]
+        if pop_list.count(pop_list[0]) == len(pop_list):
+            norm_pop_list = [0.5 for i in pop_list]
+        else:
+            norm_pop_list = [
+                (i - min(pop_list))/(max(pop_list)-min(pop_list)) for i in pop_list]
+        if amount_list.count(amount_list[0]) == len(amount_list):
+            norm_amount_list = [0.5 for i in amount_list]
+        else:
+            norm_amount_list = [
+                (i - min(amount_list))/(max(amount_list)-min(amount_list)) for i in amount_list]
         array_normalized = np.array([norm_money_list, norm_pref_list, norm_pop_list, norm_amount_list])
         array_normalized = array_normalized.transpose()
 
