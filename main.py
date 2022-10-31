@@ -1,11 +1,10 @@
 import json
 import logging
 import configparser
-from stringprep import in_table_d1
 import sys
 import random
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from itertools import tee
 
 import openrouteservice
@@ -48,7 +47,7 @@ class CityTrip:
         self.calc_distance_start_end_point()
 
         self.amount_of_ants = 100
-        self.iterations = 500
+        self.iterations = 100
         self.divide_pheromones = 2  # 1: (0, 1), 2: (0, 0.5)
         self.maximum_weight = 20
         self.minimum_weight = 1
@@ -97,7 +96,6 @@ class CityTrip:
         print(len(self.dominant_solutions_criteria))
         print(len(self.dominant_solutions))
         # to do:
-        # check closing and open time
         # AHP
 
     def get_dominant(self, epoch_solutions, epoch_criteria):
@@ -118,7 +116,7 @@ class CityTrip:
         self.dominant_solutions_criteria = crit
 
     def dominates(self, row, candidateRow):
-        return sum([row[x] >= candidateRow[x] for x in range(len(row))]) == len(row)    
+        return sum([row[x] >= candidateRow[x] for x in range(len(row))]) == len(row)
 
     def simple_cull(self, inputPoints, dominates):
         paretoPoints = set()
@@ -250,10 +248,19 @@ class CityTrip:
             total_time += time_travel
         total_time += float(
                     self.distances[path[-1]][destination]["duration"])
-        total_time += float(
-                    self.distances["start"][destination]["duration"])
+        close_open_time = self.data[destination]["openinghours"]
+        if close_open_time[0] != "all day":
+            opening_hour = datetime.strptime(close_open_time[0], "%H:%M")
+            closing_hour = datetime.strptime(close_open_time[1], "%H:%M")
+            if (self.start_time + timedelta(0, total_time)) < opening_hour:
+                return False
         total_time += float(self.data[destination]["timespend"])*60
 
+        if close_open_time[0] != "all day":
+            if (self.start_time + timedelta(0, total_time)) > closing_hour:
+                return False
+        total_time += float(
+                    self.distances["start"][destination]["duration"])
         total_money = 0
         for attraction in path:
             if attraction != "start":
