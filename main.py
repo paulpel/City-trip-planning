@@ -47,14 +47,15 @@ class CityTrip:
         self.prob_matrix_f()
         self.calc_distance_start_end_point()
 
-        self.amount_of_ants = 10
-        self.iterations = 1000
-        self.divide_pheromones = 1
-        self.maximum_weight = 100
-        self.minimum_weight = 0.1
-        self.decay_value = 0.3
+        self.amount_of_ants = 100
+        self.iterations = 500
+        self.divide_pheromones = 2  # 1: (0, 1), 2: (0, 0.5)
+        self.maximum_weight = 20
+        self.minimum_weight = 1
+        self.decay_value = 0.1
 
         self.dominant_solutions = []
+        self.dominant_solutions_criteria = []
 
     def main(self):
         self.check_time_start()
@@ -92,16 +93,67 @@ class CityTrip:
             pheromones = self.get_pheromones(normalized_epoch_criteraia)
             self.update_pheromones(pheromones, epoch_solutions)
             self.decay_pheromones()
+            self.get_dominant(epoch_solutions, epoch_criteria)
+        print(len(self.dominant_solutions_criteria))
+        print(len(self.dominant_solutions))
         # to do:
-        # leave only dominant solutions
+        # check closing and open time
         # AHP
+
+    def get_dominant(self, epoch_solutions, epoch_criteria):
+        self.dominant_solutions_criteria.extend(epoch_criteria)
+        self.dominant_solutions.extend(epoch_solutions)
+        temp_criteria = self.dominant_solutions_criteria.copy()
+        temp_solutions = self.dominant_solutions.copy()
+
+        paretoPoints, _ = self.simple_cull(temp_criteria, self.dominates)
+
+        sol = []
+        crit = []
+        for p in paretoPoints:
+            index = self.dominant_solutions_criteria.index(list(p))
+            sol.append(temp_solutions[index])
+            crit.append(list(p))
+        self.dominant_solutions = sol
+        self.dominant_solutions_criteria = crit
+
+    def dominates(self, row, candidateRow):
+        return sum([row[x] >= candidateRow[x] for x in range(len(row))]) == len(row)    
+
+    def simple_cull(self, inputPoints, dominates):
+        paretoPoints = set()
+        candidateRowNr = 0
+        dominatedPoints = set()
+        while True:
+            candidateRow = inputPoints[candidateRowNr]
+            inputPoints.remove(candidateRow)
+            rowNr = 0
+            nonDominated = True
+            while len(inputPoints) != 0 and rowNr < len(inputPoints):
+                row = inputPoints[rowNr]
+                if dominates(candidateRow, row):
+                    inputPoints.remove(row)
+                    dominatedPoints.add(tuple(row))
+                elif dominates(row, candidateRow):
+                    nonDominated = False
+                    dominatedPoints.add(tuple(candidateRow))
+                    rowNr += 1
+                else:
+                    rowNr += 1
+
+            if nonDominated:
+                paretoPoints.add(tuple(candidateRow))
+
+            if len(inputPoints) == 0:
+                break
+        return paretoPoints, dominatedPoints
 
     def decay_pheromones(self):
         for i in range(len(self.probability_matrix)):
             for j in range(len(self.probability_matrix[i])):
                 if self.probability_matrix[i][j] != 0:
                     self.probability_matrix[i][j] -= self.decay_value
-                    if self.probability_matrix[i][j] <= 0:
+                    if self.probability_matrix[i][j] <= self.minimum_weight:
                         self.probability_matrix[i][j] = self.minimum_weight
 
     def update_pheromones(self, pheromones, paths):
@@ -120,10 +172,7 @@ class CityTrip:
         random_criteria = random.randint(0, 3)
         criteria_list = [i[random_criteria] for i in normalized_epoch_criteria]
         for index, item in enumerate(criteria_list):
-            if random_criteria == 0:
-                criteria_list[index] = (1-item)/self.divide_pheromones
-            else:
-                criteria_list[index] = item/self.divide_pheromones
+            criteria_list[index] = item/self.divide_pheromones
         return criteria_list
 
     def normalize_criteria(self, epoch_criteria):
@@ -164,7 +213,7 @@ class CityTrip:
         money = 0
         for atr in only_attractions:
             money_spend = float(self.data[atr]["price"])
-            money += money_spend
+            money -= money_spend
         criteria.append(money)
 
         # preferences
@@ -310,7 +359,7 @@ class CityTrip:
         config.read('config.cfg')
         logging.basicConfig(format=config["logging"]["format"], level=logging.INFO)
         self.api_key = config["ORS"]["api_key"]
-        np.set_printoptions(threshold=sys.maxsize)
+        np.set_printoptions(threshold=sys.maxsize, suppress=True)
 
 
 if __name__ == "__main__":
@@ -323,5 +372,6 @@ if __name__ == "__main__":
         (12.490514900515363, 41.90862361898305),
         ["Koloseum"],
         [3, 3, 3, 4, 3, 4])
-
+    start = time.time()
     ct_obj.main()
+    end = time.time()
