@@ -2,6 +2,7 @@ import json
 import logging
 import configparser
 import sys
+import os
 import random
 import time
 from datetime import datetime, timedelta
@@ -39,6 +40,10 @@ class CityTrip:
         self.pref_amount_c = comparisons[4]
         self.pop_amount_c = comparisons[5]
 
+        self.attration_path = os.path.join("data", "attractions.json")
+        self.distances_city = os.path.join("data", f"distances_{self.choosen_city}.json")
+        self.test_dist = os.path.join("data", "start.json")
+
         if self.end_time > self.start_time:
             self.time_left = self.end_time - self.start_time
         else:
@@ -53,8 +58,8 @@ class CityTrip:
         self.prob_matrix_f()
         self.calc_distance_start_end_point()
 
-        self.amount_of_ants = 100
-        self.iterations = 300
+        self.amount_of_ants = 1
+        self.iterations = 3
         self.divide_pheromones = 2  # 1: (0, 1), 2: (0, 0.5)
         self.maximum_weight = 20
         self.minimum_weight = 1
@@ -360,7 +365,7 @@ class CityTrip:
 
     def calc_distance_start_end_point(self, test=True):
         if test:
-            with open("start.json") as jf:
+            with open(self.test_dist) as jf:
                 self.distances["start"] = json.load(jf)
         else:
             client = openrouteservice.Client(key=self.api_key)
@@ -384,7 +389,7 @@ class CityTrip:
             self.distances["start"] = start
 
     def load_data(self):
-        with open("attractions.json") as jf:
+        with open(self.attration_path) as jf:
             data = json.load(jf)
 
         if data:
@@ -394,8 +399,7 @@ class CityTrip:
             sys.exit(-1)
 
     def load_distances(self):
-        file_name = f"distances_{self.choosen_city}.json"
-        with open(file_name) as jf:
+        with open(self.distances_city) as jf:
             dist = json.load(jf)
 
         if dist:
@@ -406,7 +410,7 @@ class CityTrip:
 
     def config(self):
         config = configparser.ConfigParser()
-        config.read('config.cfg')
+        config.read(os.path.join("config", "config.cfg"))
         logging.basicConfig(format=config["logging"]["format"], level=logging.INFO)
         self.api_key = config["ORS"]["api_key"]
         np.set_printoptions(threshold=sys.maxsize, suppress=True)
