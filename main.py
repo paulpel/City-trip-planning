@@ -316,8 +316,7 @@ class CityTrip:
 
         if total_time > self.time_left.total_seconds() or total_money > self.budget:
             return False
-        else:
-            return True
+        return True
 
     def pairwise(self, iterable):
         a, b = tee(iterable)
