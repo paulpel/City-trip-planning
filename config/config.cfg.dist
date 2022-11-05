@@ -1,5 +1,0 @@
-[ORS]
-api_key = ~
-
-[logging]
-format = [%%(asctime)s] [%%(levelname)s] [%%(filename)s %%(funcName)s:%%(lineno)d] Msg: %%(message)s
