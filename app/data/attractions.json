@@ -1,0 +1,739 @@
+{
+  "rome": {
+    "Koloseum": {
+      "category": [
+        "Architektura",
+        "Muzea"
+      ],
+      "popularity": 314191,
+      "rating": 4.7,
+      "price": 18,
+      "timespend": 60,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.89129789399952,
+        "longitude": 12.491662737249763
+      }
+    },
+    "Ogrody Borghese": {
+      "category": [
+        "Parki i ogrody",
+        "Rekreacja"
+      ],
+      "popularity": 66616,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 60,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.91308288654223,
+        "longitude": 12.485229955427062
+      }
+    },
+    "Pantheon": {
+      "category": [
+        "Koscioly i katedry",
+        "Architektura"
+      ],
+      "popularity": 179580,
+      "rating": 4.8,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "9:00",
+        "18:45"
+      ],
+      "cords": {
+        "latitude": 41.89926923636829,
+        "longitude": 12.476559413569142
+      }
+    },
+    "Fontanna di Trevi": {
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 327960,
+      "rating": 4.8,
+      "price": 0,
+      "timespend": 15,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.90112190826372,
+        "longitude": 12.483282165304814
+      }
+    },
+    "Bazylika Swietego Piotra": {
+      "category": [
+        "Architektura",
+        "Koscioly i katedry",
+        "Punkt widokowy"
+      ],
+      "popularity": 131091,
+      "rating": 4.8,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "7:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.90237429734432,
+        "longitude": 12.453877689418539
+      }
+    },
+    "Muzea Watykanskie": {
+      "category": [
+        "Muzea"
+      ],
+      "popularity": 133473,
+      "rating": 4.6,
+      "price": 27.5,
+      "timespend": 120,
+      "openinghours": [
+        "8:30",
+        "18:30"
+      ],
+      "cords": {
+        "latitude": 41.90671933756587,
+        "longitude": 12.453743221960979
+      }
+    },
+    "Schody hiszpanskie": {
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 53739,
+      "rating": 4.5,
+      "price": 0,
+      "timespend": 15,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.906080397323734,
+        "longitude": 12.482748983599436
+      }
+    },
+    "Kaplica Sykstynska": {
+      "category": [
+        "Architektura",
+        "Koscioly i katedry"
+      ],
+      "popularity": 52205,
+      "rating": 4.7,
+      "price": 25,
+      "timespend": 30,
+      "openinghours": [
+        "9:00",
+        "16:00"
+      ],
+      "cords": {
+        "latitude": 41.905459165095,
+        "longitude": 12.45469785684436
+      }
+    },
+    "Piazza Navona": {
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 150236,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89929249301596,
+        "longitude": 12.473367200444294
+      }
+    },
+    "Zamek Swietego Aniola": {
+      "category": [
+        "Architektura",
+        "Muzea"
+      ],
+      "popularity": 68187,
+      "rating": 4.7,
+      "price": 17.5,
+      "timespend": 90,
+      "openinghours": [
+        "9:00",
+        "19:30"
+      ],
+      "cords": {
+        "latitude": 41.90328669812914,
+        "longitude": 12.466340360816895
+      }
+    },
+    "Galeria Borghesse": {
+      "category": [
+        "Muzea",
+        "Architektura"
+      ],
+      "popularity": 17572,
+      "rating": 4.6,
+      "price": 20,
+      "timespend": 90,
+      "openinghours": [
+        "9:00",
+        "22:00"
+      ],
+      "cords": {
+        "latitude": 41.91434022517775,
+        "longitude": 12.492132865480475
+      }
+    },
+    "Plac Wenecki w Rzymie": {
+      "category": [
+        "Architektura",
+        "Punkt widokowy"
+      ],
+      "popularity": 45727,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89596895149993,
+        "longitude": 12.482541892024692
+      }
+    },
+    "Bazylika Matki Bozej Snieznej": {
+      "category": [
+        "Koscioly i katedry",
+        "Architektura"
+      ],
+      "popularity": 26097,
+      "rating": 4.8,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89804786256094,
+        "longitude": 12.49842434372093
+      }
+    },
+    "Forum Romanum": {
+      "category": [
+        "Architektura",
+        "Parki i ogrody",
+        "Rekreacja",
+        "Punkt widokowy"
+      ],
+      "popularity": 112340,
+      "rating": 4.7,
+      "price": 14,
+      "timespend": 60,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.89260850254894,
+        "longitude": 12.485323521223828
+      }
+    },
+    "Piazza del Popolo": {
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 85408,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.910911369480615,
+        "longitude": 12.476454458116837
+      }
+    },
+    "Muzeum Kapitolinskie": {
+      "category": [
+        "Muzea"
+      ],
+      "popularity": 12635,
+      "rating": 4.7,
+      "price": 16,
+      "timespend": 90,
+      "openinghours": [
+        "9:30",
+        "19:30"
+      ],
+      "cords": {
+        "latitude": 41.89311848141252,
+        "longitude": 12.482557698591041
+      }
+    },
+    "Campo de' Fiori": {
+      "category": [
+        "Rekreacja",
+        "Architektura"
+      ],
+      "popularity": 85408,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89577158581627,
+        "longitude": 12.471847335285739
+      }
+    },
+    "Termy Karakalli": {
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 17466,
+      "rating": 4.6,
+      "price": 4,
+      "timespend": 30,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.87927782518759,
+        "longitude": 12.492428669754645
+      }
+    },
+    "Cirkus Maximus": {
+      "category": [
+        "Rekreacja",
+        "Parki i ogrody",
+        "Architektura"
+      ],
+      "popularity": 42727,
+      "rating": 4.4,
+      "price": 12,
+      "timespend": 60,
+      "openinghours": [
+        "9:30",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.886349036774114,
+        "longitude": 12.48514959127108
+      }
+    },
+    "Most Sw. Aniola": {
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 16659,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.90201150259479,
+        "longitude": 12.466440230127347
+      }
+    },
+    "Janikulum": {
+      "category": [
+        "Architektura",
+        "Rekreacja",
+        "Punkt widokowy"
+      ],
+      "popularity": 18238,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 60,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89164242558915, 
+        "longitude": 12.46142636232019
+      }
+    },
+    "Terazza di Campidoglio": {
+      "category": [
+        "Architektura",
+        "Rekreacja",
+        "Punkt widokowy"
+      ],
+      "popularity": 15567,
+      "rating": 4.6,
+      "price": 5,
+      "timespend": 30,
+      "openinghours": [
+        "9:30",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.89297060092349, 
+        "longitude": 12.481888533484721
+      }
+    },
+    "MAXXI - National Museum of 21st Century Art": {
+      "category": [
+        "Muzea"
+      ],
+      "popularity": 8880,
+      "rating": 4.4,
+      "price": 12,
+      "timespend": 90,
+      "openinghours": [
+        "11:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.92846059446069, 
+        "longitude": 12.466834240490371
+      }
+    },
+    "Kapitol": {
+      "category": [
+        "Architektura",
+        "Punkt widokowy"
+      ],
+      "popularity": 19111,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89359877147389, 
+        "longitude": 12.482651594462304
+      }
+    },
+    "Luk Konstantyna Wielkiego": {
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 4105,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.89434869759415,  
+        "longitude": 12.490084668003005
+      }
+    },
+    "Villa D'Este": {
+      "category": [
+        "Architektura",
+        "Parki i ogrody",
+        "Rekreacja"
+      ],
+      "popularity": 24382,
+      "rating": 4.7,
+      "price": 16,
+      "timespend": 30,
+      "openinghours": [
+        "8:30",
+        "18:45"
+      ],
+      "cords": {
+        "latitude": 41.967375455046145,
+        "longitude": 12.796318738649441
+      }
+    },
+    "Fontanna Czterech Rzek": {
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 7918,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.90277905511587,
+        "longitude": 12.472570168306676
+      }
+    },
+    "Piazza Di Spagna": {
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 108539,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.91129763269128, 
+        "longitude": 12.480780000312022
+      }
+    },
+    "Usta Prawdy": {
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 14843,
+      "rating": 4.2,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "9:30",
+        "17:50"
+      ],
+      "cords": {
+        "latitude": 41.893451917997005,  
+        "longitude": 12.481619413426023
+      }
+    },
+    "Hale Trajana": {
+      "category": [
+        "Architektura",
+        "Parki i ogrody",
+        "Rekreacja"
+      ],
+      "popularity": 7585,
+      "rating": 4.6,
+      "price": 10,
+      "timespend": 60,
+      "openinghours": [
+        "9:30",
+        "19:30"
+      ],
+      "cords": {
+        "latitude": 41.89843108174972, 
+        "longitude": 12.485731068196854
+      }
+    },
+    "Bazylika Swietej Marii na Zatybrzu": {
+      "category": [
+        "Architektura",
+        "Koscioly i katedry"
+      ],
+      "popularity": 14630,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "7:30",
+        "21:00"
+      ],
+      "cords": {
+        "latitude": 41.89506696299086, 
+        "longitude": 12.467773177037113
+      }
+    },
+    "Giardino degli Aranci": {
+      "category": [
+        "Parki i ogrody",
+        "Rekreacja"
+      ],
+      "popularity": 17244,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 60,
+      "openinghours": [
+        "7:30",
+        "21:00"
+      ],
+      "cords": {
+        "latitude": 41.89506696299086, 
+        "longitude": 12.467773177037113
+      }
+    },
+    "Bazylika Swietego Klemensa": {
+      "category": [
+        "Koscioly i katedry",
+        "Architektura"
+      ],
+      "popularity": 4536,
+      "rating": 4.7,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "9:45",
+        "17:30"
+      ],
+      "cords": {
+        "latitude": 41.89442485378962, 
+        "longitude": 12.497745313466577
+      }
+    },
+    "Domus Aurea": {
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 2207,
+      "rating": 4.6,
+      "price": 12,
+      "timespend": 45,
+      "openinghours": [
+        "9:00",
+        "17:00"
+      ],
+      "cords": {
+        "latitude": 41.89596780639131, 
+        "longitude": 12.495438690770124
+      }
+    },
+    "Bazylika Swietego Pawla za Murami": {
+      "category": [
+        "Koscioly i katedry",
+        "Architektura"
+      ],
+      "popularity": 13009,
+      "rating": 4.8,
+      "price": 0,
+      "timespend": 30,
+      "openinghours": [
+        "7:00",
+        "18:30"
+      ],
+      "cords": {
+        "latitude": 41.864536356220974,
+        "longitude": 12.476560089715827
+      }
+    },
+    "Willa Hadriana": {
+      "category": [
+        "Parki i ogrody",
+        "Architektura"
+      ],
+      "popularity": 9567,
+      "rating": 4.6,
+      "price": 14,
+      "timespend": 45,
+      "openinghours": [
+        "9:00",
+        "17:30"
+      ],
+      "cords": {
+        "latitude": 41.94788666898693, 
+        "longitude": 12.775941906188374
+      }
+    },
+    "Galeria Dorii Pamphij": {
+      "category": [
+        "Muzea"
+      ],
+      "popularity": 4349,
+      "rating": 4.6,
+      "price": 18,
+      "timespend": 60,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.90383423721514, 
+        "longitude": 12.479683877318163
+      }
+    },
+    "Lorgo di Torre Argentina": {
+      "category": [
+        "Architektura",
+        "Rekreacja"
+      ],
+      "popularity": 29517,
+      "rating": 4.5,
+      "price": 0,
+      "timespend": 45,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.907186507294284, 
+        "longitude": 12.477151457015914
+      }
+    },
+    "Piramida Cestiusza": {
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 4821,
+      "rating": 4.3,
+      "price": 0,
+      "timespend": 15,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.88209140611965, 
+        "longitude": 12.479694222086707
+      }
+    },
+    "Luk Tytusa": {
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 1602,
+      "rating": 4.7,
+      "price": 15,
+      "timespend": 30,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.89578734464445, 
+        "longitude": 12.487445822555708
+      }
+    },
+    "Teatr Marcellusa": {
+      "category": [
+        "Architektura"
+      ],
+      "popularity": 7967,
+      "rating": 4.6,
+      "price": 0,
+      "timespend": 45,
+      "openinghours": [
+        "all day"
+      ],
+      "cords": {
+        "latitude": 41.898042941683784, 
+        "longitude": 12.480421236291251
+      }
+    },
+    "Galleria Nazionale d'Arte Moderna": {
+      "category": [
+        "Muzea",
+        "Architektura"
+      ],
+      "popularity": 6799,
+      "rating": 4.6,
+      "price": 13,
+      "timespend": 60,
+      "openinghours": [
+        "9:00",
+        "19:00"
+      ],
+      "cords": {
+        "latitude": 41.91726361290167, 
+        "longitude": 12.482065840190229
+      }
+    }
+  }
+}
