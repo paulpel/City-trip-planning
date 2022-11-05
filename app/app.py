@@ -9,7 +9,13 @@ app.config["SECRET_KEY"] = "mykey"
 
 form_data = {}
 
-
+"""TO DO
+- data validation func
+- remove attractions page
+- ahp sliders page
+- loading page
+- final page
+"""
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -66,6 +72,7 @@ def preferences():
         return redirect('/remove')
 
     return render_template("preferences.html")
+
 
 @app.route('/remove', methods=['GET', 'POST'])
 def remove():
