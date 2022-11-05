@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container ">
+    <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
+        <h1>Please provide preferences for your trip!</h1>
+        <p>Choose your preference for each category below.</p>
+        <p>Meaning:</p>
+        <ol>
+            <li>Not interested</li>
+            <li>Prefer other activities</li>
+            <li>I'm not sure</li>
+            <li>Quite interested</li>
+            <li>Would love to see</li>
+        </ol>
+    </div>
+
+    <form class="form-inline" method="POST" action="{{ url_for('preferences') }}">
+        <div class="mt-4 mb-4 p-5 text-white rounded " style="background-color: #808080;">
+            <label>Architecture:</label>
+            <select class="form-select" aria-label="Default select example" name="architecture">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3 selected>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <label>Churches and catedrals:</label>
+            <select class="form-select" aria-label="Default select example" name="churches">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3 selected>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <label>Museums:</label>
+            <select class="form-select" aria-label="Default select example" name="museums">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3 selected>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <label>Parks and gardens:</label>
+            <select class="form-select" aria-label="Default select example" name="parks">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3 selected>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <label>Recreation:</label>
+            <select class="form-select" aria-label="Default select example" name="recreation">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3 selected>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <label>Viewpoints::</label>
+            <select class="form-select" aria-label="Default select example" name="viewpoints">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3 selected>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <div class="d-grid mt-4">
+                <button class="btn text-white" style="background-color: #50C878;" type="submit" class="btn btn-default">Continue</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

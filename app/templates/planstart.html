@@ -2,8 +2,53 @@
 
 {% block content %}
 <div class="container ">
-    <div class="mt-4 p-5 bg-dark text-white rounded ">
+    <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
         <h1>Configure your trip!</h1>
+        <p>Please fill these forms below and click continue. Thank you!</p>
     </div>
+
+    {% if get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Please fill all fields below!</strong>
+        {% for msg in get_flashed_messages() %}
+        <ul>
+            <li>
+                {{msg}}
+            </li>
+        </ul>
+        {% endfor %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+
+    <form class="form-inline" method="POST" action="{{ url_for('planstart') }}">
+        <div class="mt-4 mb-4 p-5 text-white rounded " style="background-color: #808080;">
+            <label>Please choose city you wish to visit:</label>
+            <select class="form-select" name="city_select">
+                {% for city in list_cities %}
+                <option value={{city}}>{{city}}</option>
+                {% endfor %}
+            </select>
+
+            <label class="mt-4">Please give longitude and latitude of your trip starting point:</label>
+            <div class="input-group">
+                <input name="longitude" type="text" class="form-control" placeholder="longitude (ex. '12.490514900515363')">
+                <input name="latitude" type="text" class="form-control" placeholder="latitude (ex. '41.90862361898305')">
+            </div>
+
+            <label class="mt-4">Please fill trip start and end times:</label>
+            <div class="input-group">
+                <input name="start_time" type="text" class="form-control" placeholder="Start time (ex. '8:00')">
+                <input name="end_time" type="text" class="form-control" placeholder="End time (ex. '19:00')">
+            </div>
+            
+            <label class="mt-4">Please give info about budget:</label>
+            <input name="budget" type="text" class="form-control" placeholder="Max budget in euro (ex. '25')">
+
+            <div class="d-grid mt-4">
+                <button class="btn text-white" style="background-color: #50C878;" type="submit" class="btn btn-default">Continue</button>
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock %}
