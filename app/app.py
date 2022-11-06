@@ -10,9 +10,7 @@ app.config["SECRET_KEY"] = "mykey"
 form_data = {}
 
 """TO DO
-- get long and att from adress
 - data validation func
-- remove attractions page
 - ahp sliders page
 - loading page
 - final page
@@ -26,24 +24,20 @@ def index():
 def planstart():
     if request.method == "POST":
         city = request.form["city_select"]
-        longitude = request.form['longitude']
-        latitude = request.form['latitude']
+        adress = request.form['adress']
         start_time = request.form['start_time']
         end_time = request.form['end_time']
         budget = request.form['budget']
 
         form_data["city"] = city
-        form_data["longitude"] = longitude
-        form_data["latitude"] = latitude
+        form_data["adress"] = adress
         form_data["start_time"] = start_time
         form_data["end_time"] = end_time
         form_data["budget"] = budget
         if not city:
             flash("Please choose city")
-        if not longitude:
-            flash("Please fill longitude")
-        if not latitude:
-            flash("Please fill latitude")
+        if not adress:
+            flash("Please fill adress")
         if not start_time:
             flash("Please fill start_time")
         if not end_time:
@@ -51,7 +45,7 @@ def planstart():
         if not budget:
             flash("Please fill budget")
 
-        if city and longitude and latitude and start_time and end_time and budget:
+        if city and adress and start_time and end_time and budget:
             return redirect("preferences")
 
     list_cities = cities.copy()
@@ -77,11 +71,14 @@ def preferences():
 
 @app.route('/remove', methods=['GET', 'POST'])
 def remove():
+    attractions = list(data[form_data["city"]].keys())
+
     if request.method == "POST":
+        forbidden_attr = list(request.form)
+        form_data["forbidden_attr"] = forbidden_attr
+        return redirect("/remove") # next page
 
-        return render_template("test")
-
-    return redirect("/")
+    return render_template("remove.html", attractions=sorted(attractions))
 
 
 @app.route('/git')
