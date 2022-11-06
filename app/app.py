@@ -15,6 +15,8 @@ form_data = {}
 - loading page
 - final page
 """
+
+
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -76,7 +78,7 @@ def remove():
     if request.method == "POST":
         forbidden_attr = list(request.form)
         form_data["forbidden_attr"] = forbidden_attr
-        return redirect("/remove") # next page
+        return redirect("/remove")  # next page
 
     return render_template("remove.html", attractions=sorted(attractions))
 
