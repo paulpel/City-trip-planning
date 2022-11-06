@@ -10,6 +10,7 @@ app.config["SECRET_KEY"] = "mykey"
 form_data = {}
 
 """TO DO
+- get long and att from adress
 - data validation func
 - remove attractions page
 - ahp sliders page

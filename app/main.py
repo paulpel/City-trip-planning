@@ -5,6 +5,7 @@ import sys
 import os
 import random
 import time
+from geopy.geocoders import Nominatim
 from datetime import datetime, timedelta
 from itertools import tee
 
@@ -22,7 +23,7 @@ class CityTrip:
         self.start_time = datetime.strptime(start_t, "%H:%M")
         self.end_time = datetime.strptime(end_t, "%H:%M")
         self.budget = bud
-        self.start_point = start_p
+        self.start_point = self.get_cords_from_address(start_p)
         self.forbidden_attractions = forbidden
         self.preferences = preferences
         self.preferences_order = [
@@ -408,6 +409,12 @@ class CityTrip:
             logging.error(f"Distance data empty! City: {self.choosen_city}")
             sys.exit(-1)
 
+    def get_cords_from_address(self, address):
+        geolocator = Nominatim(user_agent="app")
+        location = geolocator.geocode(address)
+
+        return (location.longitude, location.latitude)
+
     def config(self):
         config = configparser.ConfigParser()
         config.read(os.path.join("config", "config.cfg"))
@@ -423,7 +430,7 @@ if __name__ == "__main__":
         "9:00",
         "19:00",
         20,
-        (12.490514900515363, 41.90862361898305),
+        "via Firenze 8, rome",
         ["Koloseum"],
         [3, 3, 3, 4, 3, 4],
         [1, 2, 1, 3, 1, 1])
