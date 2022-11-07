@@ -9,9 +9,20 @@ app.config["SECRET_KEY"] = "mykey"
 
 form_data = {}
 
+ahp_dict = {
+    "1": 1/9,
+    "2": 1/7,
+    "3": 1/5,
+    "4": 1/3,
+    "5": 1,
+    "6": 3,
+    "7": 5,
+    "8": 7,
+    "9": 9,
+    }
+
 """TO DO
 - data validation func
-- ahp sliders page
 - loading page
 - final page
 """
@@ -78,9 +89,27 @@ def remove():
     if request.method == "POST":
         forbidden_attr = list(request.form)
         form_data["forbidden_attr"] = forbidden_attr
-        return redirect("/remove")  # next page
+        return redirect("/ahp")  # next page
 
     return render_template("remove.html", attractions=sorted(attractions))
+
+
+@app.route('/ahp', methods=['GET', 'POST'])
+def ahp():
+
+    if request.method == "POST":
+        money_pref = ahp_dict[request.form["money_pref"]]
+        money_popular = ahp_dict[request.form["money_popular"]]
+        money_amount = ahp_dict[request.form["money_amount"]]
+        pref_popular = ahp_dict[request.form["pref_popular"]]
+        pref_amount = ahp_dict[request.form["pref_amount"]]
+        popular_amount = ahp_dict[request.form["popular_amount"]]
+
+        form_data["ahp"] = [money_pref, money_popular, money_amount, pref_popular, pref_amount, popular_amount]
+        print(form_data)
+        return redirect("/ahp")  # next page
+
+    return render_template("ahp.html")
 
 
 @app.route('/git')
