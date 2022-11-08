@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, flash
 import os
 import sys
 import json
+from main import CityTrip
 
 
 app = Flask(__name__)
@@ -42,11 +43,6 @@ def planstart():
         end_time = request.form['end_time']
         budget = request.form['budget']
 
-        form_data["city"] = city
-        form_data["adress"] = adress
-        form_data["start_time"] = start_time
-        form_data["end_time"] = end_time
-        form_data["budget"] = budget
         if not city:
             flash("Please choose city")
         if not adress:
@@ -59,6 +55,11 @@ def planstart():
             flash("Please fill budget")
 
         if city and adress and start_time and end_time and budget:
+            form_data["city"] = city
+            form_data["adress"] = adress
+            form_data["start_time"] = start_time
+            form_data["end_time"] = end_time
+            form_data["budget"] = float(budget)
             return redirect("preferences")
 
     list_cities = cities.copy()
@@ -69,12 +70,12 @@ def planstart():
 def preferences():
     if request.method == "POST":
         preferences = [
-            request.form['architecture'],
-            request.form['churches'],
-            request.form['museums'],
-            request.form['parks'],
-            request.form['recreation'],
-            request.form['viewpoints']
+            int(request.form['architecture']),
+            int(request.form['churches']),
+            int(request.form['museums']),
+            int(request.form['parks']),
+            int(request.form['recreation']),
+            int(request.form['viewpoints'])
         ]
         form_data["preferences"] = preferences
         return redirect('/remove')
@@ -106,10 +107,30 @@ def ahp():
         popular_amount = ahp_dict[request.form["popular_amount"]]
 
         form_data["ahp"] = [money_pref, money_popular, money_amount, pref_popular, pref_amount, popular_amount]
-        print(form_data)
-        return redirect("/ahp")  # next page
+        return redirect("/final")  # next page
 
     return render_template("ahp.html")
+
+
+@app.route('/final', methods=['GET', 'POST'])
+def final():
+    for key, value in form_data.items():
+        print(type(value), value)
+    city_obj = CityTrip(
+        form_data["city"],
+        form_data["start_time"],
+        form_data["end_time"],
+        form_data["budget"],
+        form_data["adress"],
+        form_data["forbidden_attr"],
+        form_data["preferences"],
+        form_data["ahp"]
+    )
+    solutions = city_obj.main()
+    for sol in solutions:
+        print(sol)
+
+    return render_template("final.html", solutions=solutions)
 
 
 @app.route('/git')
