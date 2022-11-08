@@ -115,7 +115,46 @@ class CityTrip:
         for ind in index_best_solutions:
             best_sol.append(self.dominant_solutions[ind])
         best_sol.reverse()
-        return best_sol
+
+        prepared_sol = self.prep_final_data(best_sol)
+
+        return prepared_sol
+
+    def prep_final_data(self, data):
+        trips = []
+        for sol in data:
+
+            trip = {
+                "path": sol,
+            }
+
+            pairs = self.pairwise(sol)
+            times = [datetime.strftime(self.start_time, "%H:%M")]
+            money_spend = []
+            categories = []
+            total_time = self.start_time
+            for pair in pairs:
+                if pair[1] != 'start':
+                    travel_time = self.distances[pair[0]][pair[1]]["duration"]
+                    total_time += timedelta(0, travel_time)
+                    times.append(datetime.strftime(total_time, "%H:%M"))
+
+                    time_spend = self.data[pair[1]]["timespend"] * 60
+                    total_time += timedelta(0, time_spend)
+                    times.append(datetime.strftime(total_time, "%H:%M"))
+                    money_spend.append(self.data[pair[1]]["price"])
+                    categories.append(self.data[pair[1]]["category"])
+                else:
+                    travel_time = self.distances[pair[1]][pair[0]]["duration"]
+                    total_time += timedelta(0, travel_time)
+                    times.append(datetime.strftime(total_time, "%H:%M"))
+
+            trip['times'] = times
+            trip["money"] = money_spend
+            trip["categories"] = categories
+            trips.append(trip)
+
+        return trips
 
     def ahp_sort_solutions(self, criteria_values):
         criteria_sum = []
