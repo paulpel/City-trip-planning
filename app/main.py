@@ -59,8 +59,8 @@ class CityTrip:
         self.prob_matrix_f()
         self.calc_distance_start_end_point()
 
-        self.amount_of_ants = 1
-        self.iterations = 3
+        self.amount_of_ants = 100
+        self.iterations = 300
         self.divide_pheromones = 2  # 1: (0, 1), 2: (0, 0.5)
         self.maximum_weight = 20
         self.minimum_weight = 1
@@ -129,27 +129,34 @@ class CityTrip:
             }
 
             pairs = self.pairwise(sol)
-            times = [datetime.strftime(self.start_time, "%H:%M")]
-            money_spend = []
-            categories = []
+            times_dep = [datetime.strftime(self.start_time, "%H:%M")]
+            times_arr = ["-"]
+            times_spent = ["-"]
+            money_spend = ["-"]
+            categories = ["-"]
             total_time = self.start_time
             for pair in pairs:
                 if pair[1] != 'start':
                     travel_time = self.distances[pair[0]][pair[1]]["duration"]
                     total_time += timedelta(0, travel_time)
-                    times.append(datetime.strftime(total_time, "%H:%M"))
+                    times_arr.append(datetime.strftime(total_time, "%H:%M"))
 
-                    time_spend = self.data[pair[1]]["timespend"] * 60
-                    total_time += timedelta(0, time_spend)
-                    times.append(datetime.strftime(total_time, "%H:%M"))
+                    time_spend = self.data[pair[1]]["timespend"]
+                    times_spent.append(time_spend)
+                    total_time += timedelta(0, time_spend*60)
+                    times_dep.append(datetime.strftime(total_time, "%H:%M"))
                     money_spend.append(self.data[pair[1]]["price"])
                     categories.append(self.data[pair[1]]["category"])
                 else:
                     travel_time = self.distances[pair[1]][pair[0]]["duration"]
                     total_time += timedelta(0, travel_time)
-                    times.append(datetime.strftime(total_time, "%H:%M"))
+                    times_arr.append(datetime.strftime(total_time, "%H:%M"))
 
-            trip['times'] = times
+            times_dep.append("-")
+            categories.append("-")
+            money_spend.append("-")
+            times_spent.append('-')
+            trip['times'] = (times_arr, times_dep, times_spent)
             trip["money"] = money_spend
             trip["categories"] = categories
             trips.append(trip)

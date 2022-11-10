@@ -3,13 +3,37 @@
 {% block content %}
 <div class="container ">
     <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
-        <h1>Sulutions</h1>
+        <h1>Solutions</h1>
+        <p>Algorithm generated 3 solutions. Sorted from best to worst based on your preferences</p>
     </div>
-
-    <form class="form-inline" method="POST" action="{{ url_for('preferences') }}">
-        <div class="mt-4 mb-4 p-5 text-white rounded " style="background-color: #808080;">
-            <h1>{{solutions}}</h1>
-        </div>
-    </form>
+    {% for i in range(solutions|length)%}
+        <h3>Solution {{i + 1}}</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Attraction</th>
+                <th scope="col">Arrival Time</th>
+                <th scope="col">Departure Time</th>
+                <th scope="col">Average Attraction Time</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for j in range (solutions[i]["path"]|length)%}
+            <tr>
+                <th scope="row">{{j}}</th>
+                <td>{{solutions[i]["path"][j]}}</td>
+                <td>{{solutions[i]["times"][0][j]}}</td>
+                <td>{{solutions[i]["times"][1][j]}}</td>
+                <td>{{solutions[i]["times"][2][j]}}</td>
+                <td>{{solutions[i]["money"][j]}}</td>
+                <td>{{solutions[i]["categories"][j]}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+      {% endfor %}
 
 {% endblock %}
