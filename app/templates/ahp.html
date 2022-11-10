@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
+<script>
+    function test() {
+        el = document.getElementById("main2")
+        el.style.display = 'none';
+        load = document.getElementById("loading")
+        console.log(load)
+        load.style.display = 'block'
+      }
+</script>
 <div class="container ">
     <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
         <h1>Set priorities for your trip</h1>
         <p>Please adjust the sliders for your preferences</p>
     </div>
 
-    <div class="mt-4 mb-4 p-5 text-white rounded" style="background-color: #808080;">
+    <div class="mt-4 mb-4 p-5 text-white rounded" style="background-color: #808080;" id="main2">
         <form class="form-inline" method="POST" action="{{ url_for('ahp') }}">
 
             <div class="container rounded bg-dark p-2 mb-2 text-white rounded" style="color: black;">
@@ -127,7 +136,7 @@
             </div>
 
             <div class="d-grid mt-4">
-                <button class="btn text-white" style="background-color: #50C878;" type="submit" class="btn btn-default">Continue</button>
+                <button class="btn text-white" style="background-color: #50C878;" onclick="test()" type="submit" class="btn btn-default">Continue</button>
             </div>
 
             <div class="d-grid mb-4 mt-4">
@@ -135,6 +144,8 @@
             </div>
         </form>
     </div>
+
+    <h1 style="display: none" id="loading">LOADING SCREEN</h1>
 
 </div>
 {% endblock %}
