@@ -25,7 +25,6 @@ ahp_dict = {
 """TO DO
 - data validation func
 - loading page
-- final page
 """
 
 
