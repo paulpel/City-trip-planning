@@ -26,7 +26,6 @@ ahp_dict = {
 - data validation func
 - loading page
 - export to excel
-- time form change
 """
 
 
@@ -134,8 +133,6 @@ def final():
         form_data["ahp"]
     )
     solutions = city_obj.main()
-    for sol in solutions:
-        print(sol)
 
     return render_template("final.html", solutions=solutions)
 

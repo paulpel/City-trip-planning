@@ -30,11 +30,16 @@
                 {% endfor %}
             </select>
 
-            <label class="mt-4">Please fill trip start and end times:</label>
-            <div class="input-group">
-                <input name="start_time" type="text" class="form-control" placeholder="Start time (ex. '8:00')">
-                <input name="end_time" type="text" class="form-control" placeholder="End time (ex. '19:00')">
-            </div>
+            <div class="row mt-4">
+                <div class="col">
+                    <label>Start time:</label>
+                    <input name="start_time" type="time" class="form-control">
+                </div>
+                <div class="col">
+                    <label>End time:</label>
+                    <input name="end_time" type="time" class="form-control">
+                </div>
+              </div>
             
             <label class="mt-4">Please give info about budget:</label>
             <input name="budget" type="text" class="form-control" placeholder="Max budget in euro (ex. '25')">
