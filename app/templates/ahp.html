@@ -5,15 +5,22 @@
     function test() {
         el = document.getElementById("main2")
         el.style.display = 'none';
+        el2 = document.getElementById("main1")
+        el2.style.display = 'none';
         load = document.getElementById("loading")
         console.log(load)
         load.style.display = 'block'
       }
 </script>
 <div class="container ">
-    <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
+    <div class="mt-4 mb-4 p-5 bg-dark text-white rounded " id="main1">
         <h1>Set priorities for your trip</h1>
         <p>Please adjust the sliders for your preferences</p>
+    </div>
+
+    <div class="mt-4 mb-4 p-5 bg-dark text-white rounded" id="loading" style="display: none;">
+        <h1>Planning you trip</h1>
+        <p>Please wait...</p>
     </div>
 
     <div class="mt-4 mb-4 p-5 text-white rounded" style="background-color: #808080;" id="main2">
@@ -144,8 +151,6 @@
             </div>
         </form>
     </div>
-
-    <h1 style="display: none" id="loading">LOADING SCREEN</h1>
 
 </div>
 {% endblock %}

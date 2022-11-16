@@ -23,8 +23,6 @@ ahp_dict = {
     }
 
 """TO DO
-- data validation func
-- loading page
 - export to excel
 """
 
