@@ -2,3 +2,4 @@
 **/.vscode
 **/config.cfg
 **/__pycache__
+**/table2excel.js
