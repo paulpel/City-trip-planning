@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+<script src="{{url_for('static', filename='table2excel.js')}}"></script>
 <div class="container ">
     <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
         <h1>Solutions</h1>
         <p>Algorithm generated 3 solutions. Sorted from best to worst based on your preferences</p>
     </div>
+    <button id="export" class="btn text-white mb-4" style="background-color: #50C878;" class="btn btn-default">Export to excel</button>
     {% for i in range(solutions|length)%}
         <h3>Solution {{i + 1}}</h3>
-        <table class="table">
+        <table class="table" id={{i}}>
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -35,5 +37,11 @@
             </tbody>
         </table>
       {% endfor %}
-
+<script>
+    document.getElementById("export").addEventListener('click', function() {
+        el = document.getElementsByTagName('table')
+        var table2excel = new Table2Excel();
+        table2excel.export(el)
+    })
+</script>
 {% endblock %}
