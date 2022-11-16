@@ -25,6 +25,8 @@ ahp_dict = {
 """TO DO
 - data validation func
 - loading page
+- export to excel
+- time form change
 """
 
 
@@ -33,19 +35,26 @@ def index():
     return render_template("index.html")
 
 
+@app.route('/map', methods=['GET', 'POST'])
+def map():
+    if request.method == "POST":
+        adress = request.form["adress"]
+        adress = adress.split(",")
+        form_data["adress"] = (adress[1], adress[0])
+        return redirect("preferences")
+    return render_template("map.html")
+
+
 @app.route('/planstart', methods=['GET', 'POST'])
 def planstart():
     if request.method == "POST":
         city = request.form["city_select"]
-        adress = request.form['adress']
         start_time = request.form['start_time']
         end_time = request.form['end_time']
         budget = request.form['budget']
 
         if not city:
             flash("Please choose city")
-        if not adress:
-            flash("Please fill adress")
         if not start_time:
             flash("Please fill start_time")
         if not end_time:
@@ -53,13 +62,12 @@ def planstart():
         if not budget:
             flash("Please fill budget")
 
-        if city and adress and start_time and end_time and budget:
+        if city and start_time and end_time and budget:
             form_data["city"] = city
-            form_data["adress"] = adress
             form_data["start_time"] = start_time
             form_data["end_time"] = end_time
             form_data["budget"] = float(budget)
-            return redirect("preferences")
+            return redirect("map")
 
     list_cities = cities.copy()
     return render_template("planstart.html", list_cities=list_cities)

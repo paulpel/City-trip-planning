@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container ">
+    <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
+        <h1>Please choose starting point of your trip!</h1>
+    </div>
+    <div class="input-group mb-4 d-flex">
+        <input id="search" style="width: 350px;" type="text">
+        <button type="button" class="ml-5 btn btn-primary" id="search-button">Search</button>
+    </div>
+    <div id="map-container" style="height: 400px;"></div>
+    <form class="form-inline" method="POST" action="{{ url_for('map') }}">
+
+        <div class="d-grid mt-4">
+            <button name="adress" id="cnt" class="btn text-white btn-default" style="background-color: #50C878;" type="submit" disabled>Continue</button>
+        </div>
+        <div class="d-grid mb-4 mt-4">
+            <a class="btn bg-dark text-white" type="button" href="{{ url_for('planstart') }}">Back</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script>
+    const searchInput = document.getElementById('search');
+    const mapContainer = document.getElementById('map-container');
+    const currentMarkers = [];
+
+    const map = L.map(mapContainer).setView([48.2083537, 16.3725042], 4);
+    map.on('click', onMapClick);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    document.getElementById('search-button').addEventListener('click', () => {
+        const query = searchInput.value;
+        fetch('https://nominatim.openstreetmap.org/search?format=json&polygon=1&addressdetails=1&q=' + query)
+            .then(result => result.json())
+            .then(parsedResult => {
+                setResult(parsedResult[0]);
+            });
+    });
+
+    function setResult(parsedResult) {
+        if (typeof parsedResult !== 'undefined'){
+            for (const marker of currentMarkers) {
+                map.removeLayer(marker);
+            }
+            const position = new L.LatLng(parsedResult.lat, parsedResult.lon);
+            map.flyTo(position, 15);
+            marker = L.marker(position).addTo(map)
+            marker.bindPopup(String(parsedResult.display_name));
+            marker.on('mouseover', function (e) {
+                this.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                this.closePopup();
+            });
+            currentMarkers.push(marker);
+            document.getElementById("cnt").disabled = false
+           document.getElementById("cnt").value = String(position.lat) + "," + String(position.lng)
+        }
+        else {
+            alert("Adress not found! Please check spelling or manually click on the map. Thank you!");
+        }
+
+    }
+
+    function onMapClick(e) {
+        const position = e.latlng
+        const query = String(position.lat) + ", " + String(position.lng)
+        fetch('https://nominatim.openstreetmap.org/search?format=json&polygon=1&addressdetails=1&q=' + query)
+            .then(result => result.json())
+            .then(parsedResult => {
+                setResult(parsedResult[0]);
+            });
+    }
+
+</script>
+{% endblock %}
