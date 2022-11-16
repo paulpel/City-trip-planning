@@ -133,6 +133,7 @@ class CityTrip:
             times_spent = ["-"]
             money_spend = ["-"]
             categories = ["-"]
+            cords = []
             total_time = self.start_time
             for pair in pairs:
                 if pair[1] != 'start':
@@ -151,6 +152,12 @@ class CityTrip:
                     total_time += timedelta(0, travel_time)
                     times_arr.append(datetime.strftime(total_time, "%H:%M"))
 
+            for attr in sol:
+                if attr == "start":
+                    cords.append((self.start_point[1], self.start_point[0]))
+                else:
+                    cords.append((self.data[attr]["cords"]["latitude"], self.data[attr]["cords"]["longitude"]))
+
             times_dep.append("-")
             categories.append("-")
             money_spend.append("-")
@@ -158,6 +165,7 @@ class CityTrip:
             trip['times'] = (times_arr, times_dep, times_spent)
             trip["money"] = money_spend
             trip["categories"] = categories
+            trip["cords"] = cords
             trips.append(trip)
 
         return trips
@@ -409,7 +417,7 @@ class CityTrip:
         self.probability_matrix = prob_m
         self.attractions_list = all_nodes
 
-    def calc_distance_start_end_point(self, test=True):
+    def calc_distance_start_end_point(self, test=False):
         if test:
             with open(self.test_dist) as jf:
                 self.distances["start"] = json.load(jf)

@@ -37,7 +37,7 @@ def map():
     if request.method == "POST":
         adress = request.form["adress"]
         adress = adress.split(",")
-        form_data["adress"] = (adress[1], adress[0])
+        form_data["adress"] = (float(adress[1]), float(adress[0]))
         return redirect("preferences")
     return render_template("map.html")
 

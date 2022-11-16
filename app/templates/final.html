@@ -44,4 +44,26 @@
         table2excel.export(el, fileName="trips")
     })
 </script>
+<!-- <div id="map" class="map" style="height: 400px;"></div>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<script>
+    var map = L.map('map').setView([48.2083537, 16.3725042], 4);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.Routing.control({
+        waypoints: [
+            {% for cord in solutions.0.cords %}
+            L.latLng({{cord.0}}, {{cord.1}}),
+            {% endfor %}
+        ],
+        routeWhileDragging: false
+    }).addTo(map);
+</script> -->
 {% endblock %}
