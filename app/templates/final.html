@@ -41,7 +41,7 @@
     document.getElementById("export").addEventListener('click', function() {
         el = document.getElementsByTagName('table')
         var table2excel = new Table2Excel();
-        table2excel.export(el)
+        table2excel.export(el, fileName="trips")
     })
 </script>
 {% endblock %}
