@@ -22,11 +22,6 @@ ahp_dict = {
     "9": 1/9,
     }
 
-"""TO DO
-- export to excel
-"""
-
-
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -118,8 +113,6 @@ def ahp():
 
 @app.route('/final', methods=['GET', 'POST'])
 def final():
-    for key, value in form_data.items():
-        print(type(value), value)
     city_obj = CityTrip(
         form_data["city"],
         form_data["start_time"],

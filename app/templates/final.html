@@ -67,6 +67,11 @@
         routeWhileDragging: false,
     }).addTo(map1);
 
+    var sol1 = {{solutions|tojson}};
+    var attr1 = sol1[0].path
+    var attr2 = sol1[1].path
+    var attr3 = sol1[2].path
+
     var map2 = L.map('map2').setView([48.2083537, 16.3725042], 4);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -98,5 +103,23 @@
         router: L.Routing.mapbox('pk.eyJ1IjoicGF3cGVsIiwiYSI6ImNsYWt1eTNlczA0MjAzc245bzNoM2hxNTAifQ.2APPGKplEbJHyZGXhbaiZA', {"profile": "mapbox/walking"}),
         routeWhileDragging: false
     }).addTo(map3);
+
+    map1.eachLayer(function (layer) {
+        if (layer instanceof L.Marker){
+            layer.bindPopup(attr1.shift()).openPopup()
+        }
+    });
+
+    map2.eachLayer(function (layer) {
+        if (layer instanceof L.Marker){
+            layer.bindPopup(attr2.shift()).openPopup()
+        }
+    });
+
+    map3.eachLayer(function (layer) {
+        if (layer instanceof L.Marker){
+            layer.bindPopup(attr3.shift()).openPopup()
+        }
+    });
 </script>
 {% endblock %}
