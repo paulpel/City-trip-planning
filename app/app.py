@@ -39,7 +39,7 @@ def map():
         adress = adress.split(",")
         form_data["adress"] = (float(adress[1]), float(adress[0]))
         return redirect("preferences")
-    return render_template("map.html")
+    return render_template("map.html", city=form_data["city"])
 
 
 @app.route('/planstart', methods=['GET', 'POST'])

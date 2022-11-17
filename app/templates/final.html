@@ -36,7 +36,7 @@
             {% endfor %}
             </tbody>
         </table>
-        <div id="map{{i+1}}" class="map" style="height: 400px;"></div>
+        <div id="map{{i+1}}" class="map mb-4" style="height: 400px;"></div>
       {% endfor %}
 <script>
     document.getElementById("export").addEventListener('click', function() {
@@ -63,6 +63,7 @@
             L.latLng({{cord.0}}, {{cord.1}}),
             {% endfor %}
         ],
+        router: L.Routing.mapbox('pk.eyJ1IjoicGF3cGVsIiwiYSI6ImNsYWt1eTNlczA0MjAzc245bzNoM2hxNTAifQ.2APPGKplEbJHyZGXhbaiZA', {"profile": "mapbox/walking"}),
         routeWhileDragging: false,
     }).addTo(map1);
 
@@ -78,6 +79,7 @@
             L.latLng({{cord.0}}, {{cord.1}}),
             {% endfor %}
         ],
+        router: L.Routing.mapbox('pk.eyJ1IjoicGF3cGVsIiwiYSI6ImNsYWt1eTNlczA0MjAzc245bzNoM2hxNTAifQ.2APPGKplEbJHyZGXhbaiZA', {"profile": "mapbox/walking"}),
         routeWhileDragging: false
     }).addTo(map2);
 
@@ -93,6 +95,7 @@
             L.latLng({{cord.0}}, {{cord.1}}),
             {% endfor %}
         ],
+        router: L.Routing.mapbox('pk.eyJ1IjoicGF3cGVsIiwiYSI6ImNsYWt1eTNlczA0MjAzc245bzNoM2hxNTAifQ.2APPGKplEbJHyZGXhbaiZA', {"profile": "mapbox/walking"}),
         routeWhileDragging: false
     }).addTo(map3);
 </script>

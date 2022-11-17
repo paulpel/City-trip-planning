@@ -30,7 +30,8 @@
     const mapContainer = document.getElementById('map-container');
     const currentMarkers = [];
 
-    const map = L.map(mapContainer).setView([48.2083537, 16.3725042], 4);
+    const map = L.map(mapContainer).setView([48.2083537, 16.3725042], 5);
+    startView("{{city}}")
     map.on('click', onMapClick);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -75,6 +76,15 @@
         const position = e.latlng
         const query = String(position.lat) + ", " + String(position.lng)
         fetch('https://nominatim.openstreetmap.org/search?format=json&polygon=1&addressdetails=1&q=' + query)
+            .then(result => result.json())
+            .then(parsedResult => {
+                setResult(parsedResult[0]);
+            });
+    }
+
+    function startView(query) {
+        const q = query
+        fetch('https://nominatim.openstreetmap.org/search?format=json&polygon=1&addressdetails=1&q=' + q)
             .then(result => result.json())
             .then(parsedResult => {
                 setResult(parsedResult[0]);
