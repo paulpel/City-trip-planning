@@ -59,7 +59,7 @@ class CityTrip:
         self.calc_distance_start_end_point()
 
         self.amount_of_ants = 100
-        self.iterations = 100
+        self.iterations = 3
         self.divide_pheromones = 2  # 1: (0, 1), 2: (0, 0.5)
         self.maximum_weight = 20
         self.minimum_weight = 1
@@ -417,7 +417,7 @@ class CityTrip:
         self.probability_matrix = prob_m
         self.attractions_list = all_nodes
 
-    def calc_distance_start_end_point(self, test=False):
+    def calc_distance_start_end_point(self, test=True):
         if test:
             with open(self.test_dist) as jf:
                 self.distances["start"] = json.load(jf)

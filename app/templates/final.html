@@ -36,6 +36,7 @@
             {% endfor %}
             </tbody>
         </table>
+        <div id="map{{i+1}}" class="map" style="height: 400px;"></div>
       {% endfor %}
 <script>
     document.getElementById("export").addEventListener('click', function() {
@@ -44,18 +45,17 @@
         table2excel.export(el, fileName="trips")
     })
 </script>
-<!-- <div id="map" class="map" style="height: 400px;"></div>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
 <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
 <script>
-    var map = L.map('map').setView([48.2083537, 16.3725042], 4);
+    var map1 = L.map('map1').setView([48.2083537, 16.3725042], 4);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+    }).addTo(map1);
 
     L.Routing.control({
         waypoints: [
@@ -63,7 +63,37 @@
             L.latLng({{cord.0}}, {{cord.1}}),
             {% endfor %}
         ],
+        routeWhileDragging: false,
+    }).addTo(map1);
+
+    var map2 = L.map('map2').setView([48.2083537, 16.3725042], 4);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map2);
+
+    L.Routing.control({
+        waypoints: [
+            {% for cord in solutions.1.cords %}
+            L.latLng({{cord.0}}, {{cord.1}}),
+            {% endfor %}
+        ],
         routeWhileDragging: false
-    }).addTo(map);
-</script> -->
+    }).addTo(map2);
+
+    var map3 = L.map('map3').setView([48.2083537, 16.3725042], 4);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map3);
+
+    L.Routing.control({
+        waypoints: [
+            {% for cord in solutions.2.cords %}
+            L.latLng({{cord.0}}, {{cord.1}}),
+            {% endfor %}
+        ],
+        routeWhileDragging: false
+    }).addTo(map3);
+</script>
 {% endblock %}
