@@ -3,8 +3,8 @@
 {% block content %}
 <div class="container ">
     <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
-        <h1>Check unwanted attractions</h1>
-        <p>Please check those attractions you dont want to see. if you don't want to exclude any attractions just click continue</p>
+        <h1>Wyklucz atrakcje</h1>
+        <p>Zaznacz proszę atrakcję, których nie chcesz zobaczyć.</p>
     </div>
 
     <form class="form-inline" method="POST" action="{{ url_for('remove') }}">
@@ -20,10 +20,10 @@
             {% endfor %}
             </div>
             <div class="d-grid mt-4">
-                <button class="btn text-white" style="background-color: #50C878;" type="submit" class="btn btn-default">Continue</button>
+                <button class="btn text-white" style="background-color: #50C878;" type="submit" class="btn btn-default">Dalej</button>
             </div>
             <div class="d-grid mb-4 mt-4">
-                <a class="btn bg-dark text-white" type="button" href="{{ url_for('preferences') }}">Back</a>
+                <a class="btn bg-dark text-white" type="button" href="{{ url_for('preferences') }}">Wróć</a>
             </div>
         </div>
     </form>

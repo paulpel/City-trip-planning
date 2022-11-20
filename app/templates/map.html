@@ -3,20 +3,21 @@
 {% block content %}
 <div class="container ">
     <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
-        <h1>Please choose starting point of your trip!</h1>
+        <h1>Wybierz proszę punkt początkowy wycieczki!</h1>
+        <p>Kliknij punkt na mapie, albo wpisz adres.</p>
     </div>
     <div class="input-group mb-4 d-flex">
         <input id="search" style="width: 350px;" type="text">
-        <button type="button" class="ml-5 btn btn-primary" id="search-button">Search</button>
+        <button type="button" class="ml-5 btn btn-primary" id="search-button">Szukaj</button>
     </div>
     <div id="map-container" style="height: 400px;"></div>
     <form class="form-inline" method="POST" action="{{ url_for('map') }}">
 
         <div class="d-grid mt-4">
-            <button name="adress" id="cnt" class="btn text-white btn-default" style="background-color: #50C878;" type="submit" disabled>Continue</button>
+            <button name="adress" id="cnt" class="btn text-white btn-default" style="background-color: #50C878;" type="submit" disabled>Dalej</button>
         </div>
         <div class="d-grid mb-4 mt-4">
-            <a class="btn bg-dark text-white" type="button" href="{{ url_for('planstart') }}">Back</a>
+            <a class="btn bg-dark text-white" type="button" href="{{ url_for('planstart') }}">Wróć</a>
         </div>
     </form>
 </div>

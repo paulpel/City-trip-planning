@@ -4,22 +4,22 @@
 <script src="{{url_for('static', filename='table2excel.js')}}"></script>
 <div class="container ">
     <div class="mt-4 mb-4 p-5 bg-dark text-white rounded ">
-        <h1>Solutions</h1>
-        <p>Algorithm generated 3 solutions. Sorted from best to worst based on your preferences</p>
+        <h1>Rozwiązania</h1>
+        <p>Algorytm wygenerował trzy rozwiązania. Posortowane od najlepszego.</p>
     </div>
-    <button id="export" class="btn text-white mb-4" style="background-color: #50C878;" class="btn btn-default">Export to excel</button>
+    <button id="export" class="btn text-white mb-4" style="background-color: #50C878;" class="btn btn-default">Exportuj do excela</button>
     {% for i in range(solutions|length)%}
-        <h3>Solution {{i + 1}}</h3>
+        <h3>Rozwiązanie {{i + 1}}</h3>
         <table class="table" id={{i}}>
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Attraction</th>
-                <th scope="col">Arrival Time</th>
-                <th scope="col">Departure Time</th>
-                <th scope="col">Average Attraction Time</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Category</th>
+                <th scope="col">Atrakcja</th>
+                <th scope="col">Czas przyjazdu</th>
+                <th scope="col">Czas odjazdu</th>
+                <th scope="col">Czas spędzony na atrakcji</th>
+                <th scope="col">Koszt</th>
+                <th scope="col">Kategoria</th>
             </tr>
             </thead>
             <tbody>

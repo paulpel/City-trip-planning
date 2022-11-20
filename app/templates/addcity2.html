@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container ">
+    <div class="mt-4 p-5 bg-dark text-white rounded ">
+        <h1>Pliki konfiguracyjne zostały stworzone!</h1>
+        <h2>Następne kroki:</h2>
+        <ul>
+            <li>Uzupełnij plik o nazwię "attracions_nazwamiasta.json" atrakcjami według wzoru podanego w pliku. Każda atrakcja powinna posiadać następujące atrybuty:</li>
+                <ul>
+                    <li>"category" -> kategorie danej atrakcji, lista z kategoriami. Dostępne kategorie:</li>
+                    <ul>
+                        <li>Architektura</li>
+                        <li>Koscioly i katedry</li>
+                        <li>Muzea</li>
+                        <li>Parki i ogrody</li>
+                        <li>Punkt widokowy</li>
+                        <li>Rekreacja</li>
+                    </ul>
+                    <li>"popularity" -> popularność danej atrakcji - liczba recenzji z google</li>
+                    <li>"rating" -> ocena danej atrakcji - średnia ocena recenzji z google</li>
+                    <li>"price" -> cena atrakcji w euro</li>
+                    <li>"timespend" -> średni czas zwiedzania atrakcji w minutach</li>
+                    <li>"openinghours" -> godziny otwarcia. Lista z dwoma godzinami. Jeżeli atrakcja jest otwarta całą dobę: lista z jednym elementem -> ["all day"]</li>
+                    <li>"cords" -> słownik z koordynatami</li>
+                </ul>
+                <li>Wywołanie funkcji utils.py w celu obliczenia odległości między atrakcjami. Jako parametr funkcji podajemy nazwę miasta. Jedno wywołanie funckji oblicza odległośći dla jednej atrakcji (ze względu na ograniczoną ilość zapytań API serwisu openrouteservice)</li>
+        </ul>
+        <p>Przykład pliku z atrakcjami:</p>
+        <pre>
+            {
+                "attracion_name1": {
+                    "category": [
+                        "Architektura",
+                        "Muzea"
+                    ],
+                    "popularity": 0,
+                    "rating": 0,
+                    "price": 0,
+                    "timespend": 30,
+                    "openinghours": [
+                        "9:00",
+                        "19:00"
+                    ],
+                    "cords": {
+                        "latitude": 42.123123,
+                        "longitude": 12.32323
+                    }
+                },
+            }
+        </pre>
+        <div class="d-grid mb-4 mt-4">
+            <a class="btn text-white"  style="background-color: #50C878;" type="button" href="{{ url_for('index') }}">Powrót na stronę główną</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

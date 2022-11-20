@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container ">
+    <div class="mt-4 p-5 bg-dark text-white rounded ">
+        <h1>Rozszerz działanie programu o nowe miasto:</h1>
+        <p>Wypełnij proszę poniższy formularz!</p>
+    </div>
+
+    {% if get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+        <strong>Miasto już istnieje!</strong>
+        {% for msg in get_flashed_messages() %}
+        <ul>
+            <li>
+                {{msg}}
+            </li>
+        </ul>
+        {% endfor %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+
+    <div class="mt-4 mb-4 p-5 text-white rounded" style="background-color: #808080;" id="main2">
+        <form class="form-inline" method="POST" action="{{ url_for('addcity') }}">
+            <label>Wprowadź nazwę miasta dla którego chcesz wygenerować pliki konfiguracyjne:</label>
+            <input id="input1" name="newcity" type="text" class="form-control" placeholder="(ex. 'paris')" onkeydown="return /[a-z]/i.test(event.key)" required>
+            <div class="d-grid mt-4">
+                <button class="btn text-white" style="background-color: #50C878;" type="submit" class="btn btn-default">Dalej</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

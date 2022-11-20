@@ -26,6 +26,52 @@ ahp_dict = {
 def index():
     return render_template("index.html")
 
+@app.route('/addcity', methods=['GET', 'POST'])
+def addcity():
+    if request.method == "POST":
+        new_city = request.form["newcity"]
+        path_attr = os.path.join(os.getcwd(), 'data', f'attractions_{new_city}.json')
+        path_dist = os.path.join(os.getcwd(), 'data', f'distances_{new_city}.json')
+        if os.path.isfile(path_attr):
+            flash("Podaj inne miasto, albo zmodyfikuj plik z istniejącym miastem!")
+        else:
+            dictionary = {
+                "attracion_name1": {
+                    "category": [
+                        "cat1",
+                        "cat2"
+                    ],
+                    "popularity": 0,
+                    "rating": 0,
+                    "price": 0,
+                    "timespend": 0,
+                    "openinghours": [
+                        "9:00",
+                        "19:00"
+                    ],
+                    "cords": {
+                        "latitude": 0,
+                        "longitude": 0
+                        }
+                },
+            }
+            
+            json_object = json.dumps(dictionary, indent=4)
+            json_object2 = json.dumps({}, indent=4)
+            
+            with open(path_attr, "w") as outfile:
+                outfile.write(json_object)
+
+            with open(path_dist, "w") as outfile:
+                outfile.write(json_object2)
+
+            return redirect("addcity2")
+
+    return render_template("addcity.html")
+
+@app.route('/addcity2', methods=['GET', 'POST'])
+def addcity2():
+    return render_template("addcity2.html")
 
 @app.route('/map', methods=['GET', 'POST'])
 def map():
@@ -84,7 +130,8 @@ def preferences():
 
 @app.route('/remove', methods=['GET', 'POST'])
 def remove():
-    attractions = list(data[form_data["city"]].keys())
+    data = load_data(form_data["city"])
+    attractions = list(data.keys())
 
     if request.method == "POST":
         forbidden_attr = list(request.form)
@@ -138,7 +185,8 @@ def page_not_found(e):
     return render_template("404.html"), 404
 
 
-def load_data(path):
+def load_data(city):
+    path = os.path.join(os.getcwd(), 'data', f'attractions_{city}.json')
     with open(path) as jf:
         data = json.load(jf)
 
@@ -149,7 +197,7 @@ def load_data(path):
 
 
 if __name__ == "__main__":
-    attration_path = os.path.join("data", "attractions.json")
-    data = load_data(attration_path)
-    cities = list(data.keys())
+    mypath = os.path.join(os.getcwd(), 'data')
+    onlyfiles = [f for f in os.listdir(mypath) if os.path.isfile(os.path.join(mypath, f))]
+    cities = [f.split('.')[0].split('_')[1] for f in onlyfiles if "attractions" in f]
     app.run(debug=True)

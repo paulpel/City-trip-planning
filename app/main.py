@@ -17,7 +17,7 @@ class CityTrip:
 
     def __init__(self, choosen_c, start_t, end_t, bud, start_p, forbidden, preferences, comparisons):
         self.config()
-        self.test = True
+        self.test = False
 
         self.choosen_city = choosen_c
         self.start_time = datetime.strptime(start_t, "%H:%M")
@@ -41,7 +41,7 @@ class CityTrip:
         self.pref_amount_c = comparisons[4]
         self.pop_amount_c = comparisons[5]
 
-        self.attration_path = os.path.join("data", "attractions.json")
+        self.attration_path = os.path.join("data", f"attractions_{self.choosen_city}.json")
         self.distances_city = os.path.join("data", f"distances_{self.choosen_city}.json")
         self.test_dist = os.path.join("data", "start.json")
 
@@ -60,7 +60,7 @@ class CityTrip:
         self.calc_distance_start_end_point()
 
         self.amount_of_ants = 100
-        self.iterations = 3
+        self.iterations = 300
         self.divide_pheromones = 2  # 1: (0, 1), 2: (0, 0.5)
         self.maximum_weight = 20
         self.minimum_weight = 1
@@ -448,7 +448,7 @@ class CityTrip:
             data = json.load(jf)
 
         if data:
-            return data[self.choosen_city]
+            return data
         else:
             logging.error(f"Attracions data empty! City: {self.choosen_city}")
             sys.exit(-1)
@@ -484,4 +484,3 @@ if __name__ == "__main__":
         [1, 2, 1, 3, 1, 1])
 
     sol = ct_obj.main()
-    print(sol)
