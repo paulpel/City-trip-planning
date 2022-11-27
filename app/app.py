@@ -92,13 +92,13 @@ def planstart():
         budget = request.form['budget']
 
         if not city:
-            flash("Please choose city")
+            flash("Proszę wybierz miasto")
         if not start_time:
-            flash("Please fill start_time")
+            flash("Proszę podaj czas rozpoczęcia")
         if not end_time:
-            flash("Please fill end_time")
+            flash("Proszę podaj czas zakończenia")
         if not budget:
-            flash("Please fill budget")
+            flash("Proszę podaj budżet")
 
         if city and start_time and end_time and budget:
             form_data["city"] = city
