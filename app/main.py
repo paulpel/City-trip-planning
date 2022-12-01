@@ -79,6 +79,7 @@ class CityTrip:
             epoch_criteria = []
             for ant in range(self.amount_of_ants):
                 one_ant_solution = ["start"]
+                self.current_atraction = "start"
 
                 attracions_left = self.attractions_list.copy()
                 temp_prob = self.probability_matrix.copy()
@@ -88,16 +89,21 @@ class CityTrip:
                     probability = temp_prob[indx]
                     if sum(probability) == 0:
                         break
-                    destination = random.choices(self.attractions_list, weights=probability)[0]
+                    destination = random.choices(
+                        self.attractions_list, weights=probability)[0]
 
                     indx_dest = self.attractions_list.index(destination)
                     attracions_left.remove(destination)
                     for row in temp_prob:
                         row[indx_dest] = 0
-
-                    if self.check_limitations(one_ant_solution, destination):
+                    if destination != "start":
+                        if self.check_limitations(one_ant_solution, destination):
+                            self.current_atraction = destination
+                            one_ant_solution.append(destination)
+                    else:
                         one_ant_solution.append(destination)
-                one_ant_solution.append("start")
+                        break
+
                 one_ant_criteria = self.calc_criteria(one_ant_solution)
 
                 epoch_solutions.append(one_ant_solution)
@@ -377,6 +383,46 @@ class CityTrip:
         if total_time > self.time_left.total_seconds() or total_money > self.budget:
             return False
         return True
+        # total_time = 0
+        # for attr in path:
+        #     if attr != "start":
+        #         time_spend = float(self.data[attr]["timespend"])*60
+        #         total_time += time_spend
+        # for elem in self.pairwise(path):
+        #     if elem[1] == "start":
+        #         time_travel = float(
+        #                 self.distances[elem[1]][elem[0]]["duration"])
+        #         total_time += time_travel
+        #     else:
+        #         time_travel = float(
+        #                 self.distances[elem[0]][elem[1]]["duration"])
+        #         total_time += time_travel
+
+        # if destination != "start":
+        #     close_open_time = self.data[destination]["openinghours"]
+        #     if close_open_time[0] != "all day":
+        #         opening_hour = datetime.strptime(close_open_time[0], "%H:%M")
+        #         closing_hour = datetime.strptime(close_open_time[1], "%H:%M")
+        #         if (self.start_time + timedelta(0, total_time)) < opening_hour:
+        #             return False
+        #     total_time += float(self.data[destination]["timespend"])*60
+
+        #     if close_open_time[0] != "all day":
+        #         if (self.start_time + timedelta(0, total_time)) > closing_hour:
+        #             return False
+
+        # total_money = 0
+        # for attraction in path:
+        #     if attraction != "start":
+        #         money_spend = float(self.data[attraction]["price"])
+        #         total_money += money_spend
+        # if destination != "start":
+        #     money_dest = float(self.data[destination]["price"])
+        #     total_money += money_dest
+
+        # if total_time > self.time_left.total_seconds() or total_money > self.budget:
+        #     return False
+        # return True
 
     def pairwise(self, iterable):
         a, b = tee(iterable)
@@ -479,8 +525,9 @@ if __name__ == "__main__":
         "19:00",
         20,
         (12.48224, 41.8948958),
-        ["Koloseum"],
+        [],
         [3, 3, 3, 4, 3, 4],
         [1, 2, 1, 3, 1, 1])
 
     sol = ct_obj.main()
+    print(sol)
