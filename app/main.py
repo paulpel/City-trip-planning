@@ -383,46 +383,6 @@ class CityTrip:
         if total_time > self.time_left.total_seconds() or total_money > self.budget:
             return False
         return True
-        # total_time = 0
-        # for attr in path:
-        #     if attr != "start":
-        #         time_spend = float(self.data[attr]["timespend"])*60
-        #         total_time += time_spend
-        # for elem in self.pairwise(path):
-        #     if elem[1] == "start":
-        #         time_travel = float(
-        #                 self.distances[elem[1]][elem[0]]["duration"])
-        #         total_time += time_travel
-        #     else:
-        #         time_travel = float(
-        #                 self.distances[elem[0]][elem[1]]["duration"])
-        #         total_time += time_travel
-
-        # if destination != "start":
-        #     close_open_time = self.data[destination]["openinghours"]
-        #     if close_open_time[0] != "all day":
-        #         opening_hour = datetime.strptime(close_open_time[0], "%H:%M")
-        #         closing_hour = datetime.strptime(close_open_time[1], "%H:%M")
-        #         if (self.start_time + timedelta(0, total_time)) < opening_hour:
-        #             return False
-        #     total_time += float(self.data[destination]["timespend"])*60
-
-        #     if close_open_time[0] != "all day":
-        #         if (self.start_time + timedelta(0, total_time)) > closing_hour:
-        #             return False
-
-        # total_money = 0
-        # for attraction in path:
-        #     if attraction != "start":
-        #         money_spend = float(self.data[attraction]["price"])
-        #         total_money += money_spend
-        # if destination != "start":
-        #     money_dest = float(self.data[destination]["price"])
-        #     total_money += money_dest
-
-        # if total_time > self.time_left.total_seconds() or total_money > self.budget:
-        #     return False
-        # return True
 
     def pairwise(self, iterable):
         a, b = tee(iterable)
